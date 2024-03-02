@@ -1,7 +1,7 @@
 import { collection, getDocs } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { db } from '../firebase';
+import { db } from '../../firebase';
 
 const ListPage = () => {
   const navigate = useNavigate();
@@ -25,12 +25,12 @@ const ListPage = () => {
       <div>
         {noData ? noData : items.map((item) => (
           <div key={item.id}>
-            <p style={{ cursor: 'pointer' }} onClick={() => navigate('/detail', { state: item })}>{item.title}</p>
+            <p style={{ cursor: 'pointer', borderBottom: '1px solid black', width: '300px' }} onClick={() => navigate('/detail', { state: item })}>{item.title}</p>
           </div>
         ))}
       </div>
-
       <button onClick={() => navigate('/insert/1')} >글쓰기</button>
+      <button onClick={() => navigate('/login')} >로그인 페이지</button>
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import { deleteDoc, doc } from 'firebase/firestore';
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { db } from '../firebase';
+import { db } from '../../../firebase';
 const DetailPage = () => {
   const navigate = useNavigate();
   const detailData = useLocation();

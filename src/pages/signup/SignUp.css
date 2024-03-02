@@ -1,0 +1,19 @@
+.image_container {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  background-color: gray;
+  border-radius: 50%;
+  cursor: pointer;
+  color: white;
+  font-size: 12px;
+}
+
+.user_image {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}

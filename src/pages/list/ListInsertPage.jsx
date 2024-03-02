@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { collection, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
-import { db, storage } from '../firebase';
+import { db, storage } from '../../firebase';
 import uuid from 'react-uuid';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { getDownloadURL, ref, uploadString } from 'firebase/storage';
@@ -56,6 +56,7 @@ const ListInsertPage = () => {
   }
 
   const onClearAttachment = (e) => {
+    fileInput.current.value = '';
     setFile(null);
   };
 
