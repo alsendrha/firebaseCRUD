@@ -26,7 +26,6 @@ const ListInsertPage = () => {
       setContent(item.content);
       setFile(item.imageUrl);
     } else {
-      console.log('여기로오면 글쓰기임')
       return null;
     }
   }
