@@ -1,12 +1,15 @@
 import { collection, getDocs } from 'firebase/firestore';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { db } from '../../firebase';
+import { userContext } from '../login/UserContext';
 
 const ListPage = () => {
+  const { userData } = useContext(userContext);
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
   let noData;
+
   const getItemsData = async () => {
     const getData = await getDocs(collection(db, 'items'));
     console.log(getData.docs.map(doc => doc.data()));
@@ -30,7 +33,9 @@ const ListPage = () => {
         ))}
       </div>
       <button onClick={() => navigate('/insert/1')} >글쓰기</button>
-      <button onClick={() => navigate('/login')} >로그인 페이지</button>
+      {userData ? null : <button onClick={() => navigate('/login')} >
+        로그인 페이지
+      </button>}
     </div>
   )
 }

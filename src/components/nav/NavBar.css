@@ -1,0 +1,15 @@
+.nav_container {
+  width: 100%;
+  height: 70px;
+  background-color: #000;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user_nav_image {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
