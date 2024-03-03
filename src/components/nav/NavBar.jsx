@@ -10,9 +10,7 @@ const NavBar = () => {
 
   const userGetData = async () => {
     try {
-      console.log('여기까진 나오나?');
       if (!userData) return;
-      console.log('여기까진 나오나02');
       const getData = await getDoc(doc(db, 'users', userData.user.uid));
       setUser(getData.data());
     } catch (error) {
