@@ -14,7 +14,7 @@ const ListPage = () => {
     const getData = await getDocs(collection(db, 'items'));
     console.log(getData.docs.map(doc => doc.data()));
     if (getData.docs.length === 0) {
-      return noData = <p> 데이터가 없습니다.</p>;
+      return noData = <p>데이터가 없습니다.</p>;
     }
     setItems(getData.docs.map(doc => doc.data()));
   }

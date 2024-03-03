@@ -87,8 +87,24 @@ const SignUp = () => {
   return (
     <div>
       <h1>회원가입 페이지</h1>
-      {file ? <img className='user_image' src={file} onClick={onClearImageFile} alt='유저 이미지' /> : <div className='image_container' onClick={handleClick}>이미지 등록</div>}
-      <input ref={imageFile} type='file' style={{ display: 'none' }} onChange={(e) => fileUpload(e)} />
+      {file ?
+        <img
+          className='user_image'
+          src={file}
+          onClick={onClearImageFile}
+          alt='유저 이미지'
+        /> :
+        <div
+          className='image_container'
+          onClick={handleClick}
+        >이미지 등록
+        </div>}
+      <input
+        ref={imageFile}
+        type='file'
+        style={{ display: 'none' }}
+        onChange={(e) => fileUpload(e)}
+      />
       <input
         type='email'
         value={userEmail}
