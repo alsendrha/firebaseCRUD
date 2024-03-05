@@ -1,0 +1,119 @@
+.list_insert_main_container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.insert_image{
+  display: block;
+  width: 350px;
+  height: 350px;
+  cursor: pointer;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.insert_no_image_click{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 350px;
+  height: 350px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.image_icon{
+  width: 100px;
+  height: 100px;
+  opacity: 0.4;
+}
+
+.insert_no_image_click p {
+  font-size: 20px;
+  opacity: 0.4;
+  margin-top: 20px;
+}
+
+.list_insert_main_container label{
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.insert_title_input{
+  display: block;
+  margin-top: 10px;
+  width: 340px;
+  padding-left: 10px;
+  height: 45px;
+  border-radius: 8px;
+  border: 0.5px solid rgba(0, 0, 0, 0.5);
+  outline-color: #95c70c;
+}
+
+.trade{
+  display: flex;
+  width: 300px;
+  /* justify-content: space-between; */
+  margin-top: 10px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+.insert_content_input {
+  display: block;
+  padding: 10px 10px 0 10px;
+  width: 330px;
+  margin-top: 10px;
+  height: 200px;
+  border-radius: 8px;
+  resize: none;
+  border: 0.5px solid rgba(0, 0, 0, 0.5);
+  outline-color: #95c70c;
+}
+
+#trade_location{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5px 0 10px;
+  width: 335px;
+  height: 45px;
+  border: 0.5px solid rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.location_icon{
+  width: 30px;
+  height: 30px;
+  font-weight: 400;
+}
+
+
+.insert_button{
+  width: 350px;
+  height: 50px;
+  margin: 20px 0 10px 0;
+  border-radius: 8px;
+  background-color:#95c70c;
+  border: none;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+

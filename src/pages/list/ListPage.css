@@ -1,16 +1,21 @@
 .list_item_container{
   width: 100%;
-  max-width: 90%;
+  max-width: 70%;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   flex-wrap: wrap;
   margin: 0 auto;
+}
+
+.no-items-message {
+  height: 100%;
+  line-height: calc(100vh - 70px);
 }
 
 .list_item{
   width: 200px;
   height: 270px;
-  margin: 5px;
+  margin: 20px;
   cursor: pointer;
   border-radius: 8px;
 }
@@ -32,8 +37,31 @@
   object-fit: cover;
 }
 
-.list_item_title{
+.list_text_container{
   margin-top: 10px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.list_item_title{
+  font-size: 20px;
+  font-weight: 300;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.list_item_price{
+  font-weight: 700;
+}
+
+.list_item_address{
+  font-weight: 300;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .list_insert_button{

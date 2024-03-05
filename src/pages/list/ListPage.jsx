@@ -7,17 +7,19 @@ import "./ListPage.css";
 const ListPage = () => {
   const { userData } = useContext(userContext);
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
   const [items, setItems] = useState([]);
-  let noData;
 
   const getItemsData = async () => {
     const q = query(collection(db, "items"), orderBy("date", "desc"));
     const getData = await getDocs(q);
     console.log(getData.docs.map((doc) => doc.data()));
     if (getData.docs.length === 0) {
-      return (noData = <p>데이터가 없습니다.</p>);
+      setIsLoading(true);
+    } else {
+      setItems(getData.docs.map((doc) => doc.data()));
+      setIsLoading(false);
     }
-    setItems(getData.docs.map((doc) => doc.data()));
   };
 
   const loginCheck = () => {
@@ -36,23 +38,31 @@ const ListPage = () => {
   return (
     <div>
       <div className="list_item_container">
-        {noData
-          ? noData
-          : items.map((item) => (
-              <div
-                className="list_item"
-                key={item.id}
-                onClick={() => navigate("/detail", { state: item })}
-              >
-                <div className="list_image_container">
-                  <img
-                    src={item.imageUrl ? item.imageUrl : "/images/no_image.png"}
-                    alt="이미지"
-                  />
-                </div>
-                <h4 className="list_item_title">{item.title}</h4>
+        {isLoading ? (
+          <div className="no-items-message">등록된 상품이 없어요!.</div>
+        ) : (
+          items.map((item) => (
+            <div
+              className="list_item"
+              key={item.id}
+              onClick={() => navigate("/detail", { state: item })}
+            >
+              <div className="list_image_container">
+                <img
+                  src={item.imageUrl ? item.imageUrl : "/images/no_image.png"}
+                  alt="이미지"
+                />
               </div>
-            ))}
+              <div className="list_text_container">
+                <p className="list_item_title">{item.title}</p>
+                <p className="list_item_price">
+                  {Number(item.price).toLocaleString()}원
+                </p>
+                <p className="list_item_address">{item.address}</p>
+              </div>
+            </div>
+          ))
+        )}
       </div>
       <button className="list_insert_button" onClick={loginCheck}>
         글쓰기

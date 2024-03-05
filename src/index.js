@@ -1,15 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { UserProvider } from './pages/login/UserContext';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./index.css";
+import { PageProvider } from "./pages/list/InsertContext";
+import { UserProvider } from "./pages/login/UserContext";
+import reportWebVitals from "./reportWebVitals";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <UserProvider>
-    <App />
-  </UserProvider>
+  <PageProvider>
+    <UserProvider>
+      <App />
+    </UserProvider>
+  </PageProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
