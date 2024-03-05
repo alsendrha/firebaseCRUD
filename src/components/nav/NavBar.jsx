@@ -28,17 +28,26 @@ const NavBar = () => {
   }, [userData]);
   return (
     <div>
-      <div className="nav_container">
-        <div style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
-          네비바
+      <div className="nav_container nav_position">
+        <div
+          className="logo_main_container"
+          style={{ cursor: "pointer" }}
+          onClick={() => navigate("/")}
+        >
+          <div className="logo_container">
+            <img src="/images/logo.png" alt="로고" className="logo" />
+          </div>
+          <div>
+            <p className="logo_title">배추마켓</p>
+          </div>
         </div>
-        <div style={{ paddingRight: "20px" }}>
+        <div>
           {!user ? (
             <button className="login_button" onClick={() => navigate("/login")}>
               로그인
             </button>
           ) : (
-            <div>
+            <div className="user_nav_image_container">
               <img
                 className="user_nav_image"
                 src={user.userProfile}

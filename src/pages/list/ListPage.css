@@ -1,8 +1,10 @@
 .list_item_container{
   width: 100%;
+  max-width: 90%;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  margin: 0 auto;
 }
 
 .list_item{
@@ -42,11 +44,14 @@
   height: 70px;
   border-radius: 50%;
   box-shadow: 0 0 10px 0px gray;
+  background-color: #95c70c;
   cursor: pointer;
   border: none;
+  color: white;
 }
 
 .list_insert_button:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 20px 0px gray;
+  transition: 0.5s;
+  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.20);
 }

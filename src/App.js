@@ -10,6 +10,7 @@ const Layout = () => {
   return (
     <div className="layout-container">
       <NavBar />
+      <div className="gap"></div>
       <Outlet />
     </div>
   );
@@ -23,7 +24,7 @@ function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<ListPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/singup" element={<SignUp />} />
+            <Route path="/signup" element={<SignUp />} />
             <Route path="/insert/:itemId" element={<ListInsertPage />} />
             <Route path="/detail" element={<DetailPage />} />
           </Route>
