@@ -52,7 +52,7 @@ const LoginPage = () => {
       <br />
       <button onClick={login}>로그인</button>
       <br />
-      <button onClick={() => navigate('/singup')}>회원가입</button>
+      <button onClick={() => navigate('/signup')}>회원가입</button>
     </div>
   )
 }
