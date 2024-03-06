@@ -90,6 +90,7 @@ input[type=number] {
   align-items: center;
   justify-content: space-between;
   padding: 0 5px 0 10px;
+  margin-top: 10px;
   width: 335px;
   height: 45px;
   border: 0.5px solid rgba(0, 0, 0, 0.5);
