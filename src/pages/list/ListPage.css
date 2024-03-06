@@ -2,7 +2,7 @@
   width: 100%;
   max-width: 70%;
   display: flex;
-  justify-content: start;
+  justify-content: center;
   flex-wrap: wrap;
   margin: 0 auto;
 }
@@ -15,7 +15,7 @@
 .list_item{
   width: 200px;
   height: 270px;
-  margin: 20px;
+  margin: 35px;
   cursor: pointer;
   border-radius: 8px;
 }
@@ -67,7 +67,7 @@
 .list_insert_button{
   position: fixed;
   bottom: 50px;
-  right: 20px;
+  right: 40px;
   width: 70px;
   height: 70px;
   border-radius: 50%;

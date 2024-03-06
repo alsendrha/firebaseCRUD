@@ -40,6 +40,12 @@ const NavBar = () => {
             </p>
           </div>
         </div>
+        <div className="menu_list">
+          <ul>
+            <li onClick={() => navigate("/")}>중고거래</li>
+            <li onClick={() => navigate("/mypage")}>마이페이지</li>
+          </ul>
+        </div>
         <div>
           {!user ? (
             <button className="login_button" onClick={() => navigate("/login")}>

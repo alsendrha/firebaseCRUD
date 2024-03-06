@@ -6,6 +6,7 @@ import ListInsertPage from "./pages/list/ListInsertPage";
 import ListPage from "./pages/list/ListPage";
 import DetailPage from "./pages/list/detail/DetailPage";
 import LoginPage from "./pages/login/LoginPage";
+import MyPage from "./pages/mypage/MyPage";
 import SignUp from "./pages/signup/SignUp";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ function App() {
               <Route path="/" element={<ListPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignUp />} />
+              <Route path="/mypage" element={<MyPage />} />
               <Route path="/insert/:itemId" element={<ListInsertPage />} />
               <Route path="/detail" element={<DetailPage />} />
             </Route>
