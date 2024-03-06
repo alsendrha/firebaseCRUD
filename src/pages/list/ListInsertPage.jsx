@@ -8,21 +8,23 @@ import { GoChevronRight } from "react-icons/go";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import uuid from "react-uuid";
 import styled from "styled-components";
+import InsertModal from "../../components/InsertModal";
 import { db, storage } from "../../firebase";
 import { pageContext } from "./InsertContext";
-import InsertModal from "./InsertModal";
 
+import { userContext } from "../login/UserContext";
 import "./ListInsertPage.css";
 const ListInsertPage = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [price, setPrice] = useState();
+  const [price, setPrice] = useState(0);
   const [file, setFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isSelect, setIsSelect] = useState(1);
   const [isModal, setIsModal] = useState(false);
   const [position, setPosition] = useState([]);
   const navigate = useNavigate();
+  const { user } = useContext(userContext);
   const params = useParams();
   const itemId = useLocation();
   const fileInput = useRef(null);
@@ -40,7 +42,6 @@ const ListInsertPage = () => {
       setTitle(item.title);
       setContent(item.content);
       setFile(item.imageUrl);
-      console.log("이건 불러오기 확인용", typeof item.imageUrl);
     } else {
       return null;
     }
@@ -74,7 +75,6 @@ const ListInsertPage = () => {
       reader.onload = () => {
         setFile(reader.result);
         resolve();
-        console.log("확인용", typeof reader.result);
       };
     });
   };
@@ -123,14 +123,18 @@ const ListInsertPage = () => {
       await uploadString(storageRef, file, "data_url");
       imageUrl = await getDownloadURL(ref(storage, `images/${id}`));
     }
+
     await setDoc(doc(collection(db, "items"), id), {
       id: id,
+      user: user.id,
+      userNickName: user.nickName,
+      userProfile: user.userProfile,
       imageUrl: imageUrl,
       title: title,
       content: content,
       trade: isSelect === 1 ? "판매하기" : "나눔하기",
       price: isSelect === 2 ? price === 0 : price,
-      let: position.lat,
+      lat: position.lat,
       lng: position.lng,
       address: getAddress,
       date: new Date(),
@@ -183,7 +187,7 @@ const ListInsertPage = () => {
       console.log("error", error);
     }
   };
-  console.log("이건 이미지 파일 입니다.", file);
+  // console.log("이건 이미지 파일 입니다.", file);
 
   return (
     <div className="list_insert_main_container">

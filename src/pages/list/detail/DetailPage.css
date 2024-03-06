@@ -1,0 +1,83 @@
+.detail_container{
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+  
+}
+
+.detail_main_image{
+  width: 800px;
+  border-radius: 8px;
+}
+
+.detail_user_container{
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  margin: 30px auto ;
+  justify-content: start;
+}
+
+.detail_user_main_container{
+  display: flex;
+    align-items: center;
+}
+
+.detail_user_profile_image{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+.detail_user_text{
+  margin-left: 10px;
+  text-align: start;
+}
+
+.detail_user_nick_name{
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.detail_user_address{
+  margin-top: 5px;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.bottom_line{
+  margin-top: 30px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.detail_content_container{
+  width: 800px;
+  margin: 30px auto;
+  text-align: start;
+}
+
+.detail_item_title{
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.detail_item_date{
+  margin-top: 10px;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.detail_item_price{
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 600;
+}
+.detail_item_content{
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.google_map_container{
+  width: 800px;
+  margin: 30px auto;
+}

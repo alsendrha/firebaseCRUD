@@ -8,16 +8,21 @@ const Dropdown = () => {
   const { setUserData } = useContext(userContext);
   const navigate = useNavigate();
   const handleLogOut = () => {
-    signOut(auth)
-      .then(() => {
-        setUserData({});
-        localStorage.removeItem("userData");
-        navigate("/");
-        window.location.reload();
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
+    const result = window.confirm("로그아웃 하시겠습니까?");
+    if (result) {
+      signOut(auth)
+        .then(() => {
+          setUserData({});
+          localStorage.removeItem("userData");
+          navigate("/");
+          window.location.reload();
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    } else {
+      return;
+    }
   };
 
   return (

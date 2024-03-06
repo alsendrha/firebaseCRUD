@@ -1,25 +1,14 @@
-import { doc, getDoc } from "firebase/firestore";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { db } from "../../firebase";
 import { pageContext } from "../../pages/list/InsertContext";
 import { userContext } from "../../pages/login/UserContext";
 import Dropdown from "../Dropdown";
 import "./NavBar.css";
 const NavBar = () => {
-  const { userData } = useContext(userContext);
+  const { user } = useContext(userContext);
   const { pageData, setPageData } = useContext(pageContext);
-  const [user, setUser] = useState(null);
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const userGetData = async () => {
-    try {
-      if (!userData) return;
-      const getData = await getDoc(doc(db, "users", userData.user.uid));
-      console.log(getData.data());
-      setUser(getData.data());
-    } catch (error) {}
-  };
 
   const dropDown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -30,9 +19,6 @@ const NavBar = () => {
     navigate("/");
   };
 
-  useEffect(() => {
-    userGetData();
-  }, [userData]);
   return (
     <div>
       <div className="nav_container nav_position">

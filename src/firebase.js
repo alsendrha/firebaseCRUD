@@ -13,7 +13,7 @@ const firebaseConfig = {
   projectId: "crud-test-app-38ca4",
   storageBucket: "crud-test-app-38ca4.appspot.com",
   messagingSenderId: "459676653842",
-  appId: "1:459676653842:web:57c8309d5b2669ff47bbcb"
+  appId: "1:459676653842:web:57c8309d5b2669ff47bbcb",
 };
 
 // Initialize Firebase
@@ -21,4 +21,3 @@ export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
-

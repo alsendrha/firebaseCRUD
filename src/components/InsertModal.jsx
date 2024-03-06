@@ -1,8 +1,8 @@
 import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 import { useRef, useState } from "react";
 import { VscClose } from "react-icons/vsc";
+import useOnclickOutside from "../pages/list/hooks/useOnclickOutside";
 import "./InsertModal.css";
-import useOnclickOutside from "./hooks/useOnclickOutside";
 const center = { lat: 37.541, lng: 126.986 };
 
 const InsertModal = ({ setIsModal, setPosition, setGetAddress }) => {
@@ -63,7 +63,7 @@ const InsertModal = ({ setIsModal, setPosition, setGetAddress }) => {
                 <GoogleMap
                   center={center}
                   zoom={13}
-                  mapContainerStyle={{ width: "100%", height: "640px" }}
+                  mapContainerStyle={{ width: "700px", height: "600px" }}
                   options={{
                     zoomControl: false,
                     scrollwheel: true,

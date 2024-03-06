@@ -1,7 +1,7 @@
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth, db } from "../../firebase";
+import { db } from "../../firebase";
 import { userContext } from "../login/UserContext";
 import "./ListPage.css";
 const ListPage = () => {
@@ -10,7 +10,7 @@ const ListPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [items, setItems] = useState([]);
 
-  const getItemsData = async () => {
+  async function getItemsData() {
     const q = query(collection(db, "items"), orderBy("date", "desc"));
     const getData = await getDocs(q);
     console.log(getData.docs.map((doc) => doc.data()));
@@ -18,20 +18,10 @@ const ListPage = () => {
       setIsLoading(true);
     } else {
       setItems(getData.docs.map((doc) => doc.data()));
+
       setIsLoading(false);
     }
-  };
-
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        console.log("로그인한 사용자", user);
-      } else {
-        console.log("로그인하지 않은 사용자");
-      }
-    })
-  }, [])
-
+  }
 
   const loginCheck = () => {
     if (!userData) {
