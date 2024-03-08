@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import "./App.css";
+import Footer from "./components/footer/Footer";
 import NavBar from "./components/nav/NavBar";
 import ListInsertPage from "./pages/list/ListInsertPage";
 import ListPage from "./pages/list/ListPage";
@@ -17,6 +18,7 @@ const Layout = () => {
       <NavBar />
       <div className="gap"></div>
       <Outlet />
+      <Footer />
     </div>
   );
 };

@@ -14,7 +14,7 @@
 
 .modal {
   position: relative;
-  width: 700px;
+  width: 600px;
   height: 800px;
   background-color: white;
   overflow: hidden;
@@ -53,7 +53,7 @@
   display: flex;
   align-items: center;
   height: 45px;
-  width: 580px;
+  width: 400px;
   justify-content: center;
   background-color: #95c70c;;
   border: none;
@@ -68,7 +68,8 @@
 .button_position{
   position: absolute;
   bottom: 30px;
-  left:6.5%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 @keyframes fadeIn {

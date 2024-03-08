@@ -38,6 +38,21 @@ const ListPage = () => {
 
   return (
     <div>
+      <div className="main_list_banner">
+        <div className="main_list_banner_content">
+          <div className="banner_title_container">
+            <p className="banner_main_title">믿을만한</p>
+            <p className="banner_main_title"> 이웃 간 중고거래</p>
+            <p className="banner_sub_title">주민들과 가깝고 따뜻한 거래를</p>
+            <p className="banner_sub_title">지금 경험해보세요.</p>
+          </div>
+          <img
+            className="banner_image"
+            src="/images/banner_image.png"
+            alt="배너 이미지"
+          />
+        </div>
+      </div>
       <div className="list_item_container">
         {isLoading ? (
           <div className="no-items-message">등록된 상품이 없어요!.</div>

@@ -42,6 +42,10 @@ const ListInsertPage = () => {
       setTitle(item.title);
       setContent(item.content);
       setFile(item.imageUrl);
+      setIsSelect(item.trade === "판매하기" ? 1 : 2);
+      setPrice(item.price);
+      setPosition({ lat: item.lat, lng: item.lng });
+      setGetAddress(item.address);
     } else {
       return null;
     }
@@ -169,12 +173,22 @@ const ListInsertPage = () => {
         }
       }
       const updateData = {
+        userNickName: user.nickName,
+        userProfile: user.userProfile,
         title: title,
         content: content,
         trade: isSelect === 1 ? "판매하기" : "나눔하기",
+        price: isSelect === 2 ? price === 0 : price,
+        lat: position.lat,
+        lng: position.lng,
+        address: getAddress,
       };
-
-      if (newImageUrl) {
+      console.log("이미지 체크", newImageUrl);
+      if (
+        newImageUrl !== null &&
+        newImageUrl !== "" &&
+        newImageUrl !== undefined
+      ) {
         updateData.imageUrl = newImageUrl;
       }
 

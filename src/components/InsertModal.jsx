@@ -63,7 +63,10 @@ const InsertModal = ({ setIsModal, setPosition, setGetAddress }) => {
                 <GoogleMap
                   center={center}
                   zoom={13}
-                  mapContainerStyle={{ width: "700px", height: "600px" }}
+                  mapContainerStyle={{
+                    width: "100%",
+                    height: "600px",
+                  }}
                   options={{
                     zoomControl: false,
                     scrollwheel: true,
