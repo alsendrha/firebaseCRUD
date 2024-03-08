@@ -5,26 +5,25 @@ const Footer = () => {
     <div>
       <div>
         <div className="footer_line"></div>
-        <br />
         <div className="footer_container">
           <div className="footer_flex_icon">
-            <div>
-              <strong>대표 </strong>
+            <div className="footer_main_text">
+              <strong>대표&nbsp;</strong>
               <span>김민영</span>
-              <span className="footer_text_line"> | </span>
-              <strong>사업자번호 </strong>
+              <span className="footer_text_line">&nbsp;|&nbsp;</span>
+              <strong>사업자번호&nbsp;</strong>
               <span>010-00-00001</span>
               <br />
-              <strong>직업정보제공사업 신고번호 </strong>
-              <span>M1234567891011</span>
+              <strong>직업정보제공사업 신고번호&nbsp;</strong>
+              <span> M1234567891011</span>
               <br />
-              <strong>주소 </strong>
+              <strong>주소&nbsp;</strong>
               <span>서울시 서대문구 우리집로 1길 301호</span>
               <br />
-              <strong>전화 </strong>
+              <strong>전화&nbsp;</strong>
               <span>010-1234-0001</span>
-              <span className="footer_text_line"> | </span>
-              <strong>고객문의 </strong>
+              <span className="footer_text_line">&nbsp;|&nbsp;</span>
+              <strong>고객문의&nbsp;</strong>
               <span>minyoung@freshvege.com</span>
             </div>
             <div className="footer_icon_container">
