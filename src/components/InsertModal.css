@@ -15,7 +15,7 @@
 .modal {
   position: relative;
   width: 600px;
-  height: 800px;
+  height: 90vh;
   background-color: white;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -46,7 +46,6 @@
 
 .google_map_container{
   position: relative;
-  width: 700px;
 }
 
 .google_map_select_button{
