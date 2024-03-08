@@ -22,12 +22,17 @@
   border-radius: 8px;
   transition: all 400ms ease-in-out 1s;
   animation: fadeIn 400ms;
+  overflow: scroll;
 }
 
-.modal_close{
+.modal::-webkit-scrollbar {
+  width: 0;
+}
+
+.modal_close {
   width: 30px;
   height: 30px;
- 
+
 }
 
 .modal_content {
@@ -39,16 +44,16 @@
   font-weight: 500;
 }
 
-.modal_sub_title{
+.modal_sub_title {
   margin-top: 10px;
   font-weight: 200;
 }
 
-.google_map_container{
+.google_map_container {
   position: relative;
 }
 
-.google_map_select_button{
+.google_map_select_button {
   display: flex;
   align-items: center;
   height: 45px;
@@ -64,7 +69,7 @@
   font-weight: 700;
 }
 
-.button_position{
+.button_position {
   position: absolute;
   bottom: 30px;
   left: 50%;
