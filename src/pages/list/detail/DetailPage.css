@@ -83,3 +83,37 @@
   width: 600px;
   margin: 30px auto;
 }
+
+.button_container_main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 600px;
+  margin: 30px auto;
+}
+
+.button_container{
+  display: flex;
+  justify-content: center;
+}
+
+.detail_button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin:0 5px 0 5px;
+  width: 100px;
+  height: 50px;
+  border-radius: 8px;
+  border: 1px solid #7ea70f;
+  background-color:#a9cc46;
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  color: white;
+  font-size: 18px;
+
+}
+
+.detail_button:active{
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+}

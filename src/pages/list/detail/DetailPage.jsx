@@ -38,7 +38,12 @@ const DetailPage = () => {
     timeAgo = `${minutesDifference}분 전`;
   } else {
     const hoursDifference = Math.floor(minutesDifference / 60);
-    timeAgo = `${hoursDifference}시간 전`;
+    if (hoursDifference < 24) {
+      timeAgo = `${hoursDifference}시간 전`;
+    } else {
+      const daysDifference = Math.floor(hoursDifference / 24);
+      timeAgo = `${daysDifference}일 전`;
+    }
   }
 
   console.log("주어진 시간으로부터 " + timeAgo);
@@ -96,10 +101,14 @@ const DetailPage = () => {
             />
           </GoogleMap>
         </div>
-        <div>
+        <div className="button_container_main">
+          <div className="detail_button" onClick={() => navigate("/")}>
+            목록으로
+          </div>
           {user && item.user === user.id ? (
-            <div>
-              <button
+            <div className="button_container">
+              <div
+                className="detail_button"
                 onClick={() =>
                   navigate("/insert/2", {
                     state: {
@@ -108,12 +117,13 @@ const DetailPage = () => {
                   })
                 }
               >
-                수정
-              </button>
-              <button onClick={deleteItem}>삭제</button>
+                수정하기
+              </div>
+              <div className="detail_button" onClick={deleteItem}>
+                삭제
+              </div>
             </div>
           ) : null}
-          <button>목록으로</button>
         </div>
       </div>
     </div>
