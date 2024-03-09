@@ -8,22 +8,22 @@
   align-items: center;
   justify-content: space-between;
   z-index: 1000;
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.20);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.20);
 }
 
-.nav_position{
+.nav_position {
   box-sizing: border-box;
   position: fixed;
   padding: 0 40px 0 40px;
 }
 
-.logo_main_container{
+.logo_main_container {
   width: 300px;
   display: flex;
   align-items: center;
 }
 
-.logo_container{
+.logo_container {
   width: 60px;
   height: 60px;
   display: flex;
@@ -31,43 +31,53 @@
   justify-content: center;
   align-items: center;
   background-color: white;
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.50);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.50);
 }
 
-.logo{
+.logo {
   width: 50px;
   transform: rotate(-50deg);
 }
 
-.logo_title{
+.logo_title {
   font-size: 30px;
   font-weight: bold;
   margin-left: 20px;
-  
+
 }
 
-.login_button{
-  border : 1px solid white;
+.login_button {
+  width: 70px;
+  border: 1px solid #95c70c;
   padding: 5px 10px;
   border-radius: 8px;
   background-color: transparent;
-  color: white;
+  color: black;
   font-size: 16px;
+  cursor: pointer;
 }
 
-.menu_list{
+.nav_menu_small {
+  display: none;
+}
+
+.nav_checkbox_label img {
+  display: none;
+}
+
+.menu_list {
   width: 80%;
 }
 
-.menu_list ul{
+.menu_list ul {
   display: flex;
   list-style: none;
   padding-left: -10px;
   justify-content: start;
-  
+
 }
 
-.menu_list ul li{
+.menu_list ul li {
   margin: 0 20px;
   font-size: 24px;
   font-weight: 600;
@@ -76,20 +86,7 @@
 }
 
 .menu_list ul li:hover {
-color: rgba(0, 0, 0, 0.40);
-}
-
-.user_nav_image_container{
-  display: flex;
-  align-self: center;
-  justify-content: center;
-}
-
-.user_nav_image {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  cursor: pointer;
+  color: rgba(0, 0, 0, 0.40);
 }
 
 .dropdown {
@@ -99,7 +96,7 @@ color: rgba(0, 0, 0, 0.40);
   right: 20px;
 }
 
-.dropdown ul{
+.dropdown ul {
   list-style: none;
 }
 
@@ -112,4 +109,79 @@ color: rgba(0, 0, 0, 0.40);
   cursor: pointer;
   background-color: gray;
   border-bottom: 1px solid black;
+}
+
+@media screen and (max-width: 1200px) {
+  .login_button2 {
+    display: none;
+  }
+
+  .menu_list {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 70px;
+    background-color: white;
+    width: 100%;
+    border-top: 1px solid rgba(0, 0, 0, 0.20);
+    z-index: 1000;
+  }
+
+  .nav_checkbox_label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+  }
+
+  .nav_checkbox_label img {
+    display: block;
+  }
+
+  .nav_menu_small {
+    display: none;
+  }
+
+  .nav_menu_small:checked+.menu_list {
+    display: flex;
+    height: 100px;
+
+  }
+
+  .nav_menu_small:checked+.menu_list ul {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .nav_menu_small:checked+.menu_list ul li {
+    display: flex;
+    margin-left: 0;
+    padding-left: 10px;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+
+  .nav_menu_small:checked+.menu_list ul li:hover {
+    background-color: rgba(0, 0, 0, 0.20);
+  }
+
+  .overlay {
+    position: fixed;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* 검은색 반투명 배경 */
+    z-index: 999;
+    /* 다른 요소 위에 표시하기 위해 높은 z-index 값 설정 */
+  }
 }

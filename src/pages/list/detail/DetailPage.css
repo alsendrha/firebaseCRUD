@@ -1,90 +1,101 @@
-.detail_container{
+.detail_container {
   width: 100%;
   text-align: center;
   margin-top: 10px;
-  
+
 }
 
-.detail_main_image{
+.detail_main_image {
   width: 600px;
   border-radius: 8px;
   border: 1px solid rgb(218, 218, 218);
 }
 
-.detail_user_container{
+.detail_user_container {
   display: flex;
   flex-direction: column;
   width: 600px;
-  margin: 30px auto ;
+  margin: 30px auto;
   justify-content: start;
 }
 
-.detail_user_main_container{
+.detail_user_main_container {
   display: flex;
-    align-items: center;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.detail_user_profile_image{
+.detail_user_info {
+  display: flex;
+  align-items: center;
+}
+
+.detail_user_profile_image {
   width: 70px;
   height: 70px;
   border-radius: 50%;
- 
+
 }
 
-.detail_user_text{
+.detail_user_text {
   margin-left: 10px;
   text-align: start;
 }
 
-.detail_user_nick_name{
+.detail_user_nick_name {
   font-size: 20px;
   font-weight: 600;
 }
 
-.detail_user_address{
+.detail_user_address {
   margin-top: 5px;
   font-size: 16px;
   color: rgba(0, 0, 0, 0.5);
 }
 
-.bottom_line{
+.detail_chat {
+  cursor: pointer;
+}
+
+.bottom_line {
   margin-top: 30px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.detail_content_container{
+.detail_content_container {
   width: 600px;
   margin: 30px auto;
   text-align: start;
 }
 
-.detail_item_title{
+.detail_item_title {
   font-size: 20px;
   font-weight: 600;
 }
 
-.detail_item_date{
+.detail_item_date {
   margin-top: 10px;
   font-size: 16px;
   color: rgba(0, 0, 0, 0.5);
 }
 
-.detail_item_price{
+.detail_item_price {
   margin-top: 10px;
   font-size: 20px;
   font-weight: 600;
 }
-.detail_item_content{
+
+.detail_item_content {
   margin-top: 20px;
   font-size: 16px;
 }
 
-.google_map_container{
+.google_map_container {
   width: 600px;
   margin: 30px auto;
 }
 
-.button_container_main{
+.button_container_main {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -92,21 +103,21 @@
   margin: 30px auto;
 }
 
-.button_container{
+.button_container {
   display: flex;
   justify-content: center;
 }
 
-.detail_button{
+.detail_button {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin:0 5px 0 5px;
+  margin: 0 5px 0 5px;
   width: 100px;
   height: 50px;
   border-radius: 8px;
   border: 1px solid #7ea70f;
-  background-color:#a9cc46;
+  background-color: #a9cc46;
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.5);
   cursor: pointer;
   color: white;
@@ -114,6 +125,6 @@
 
 }
 
-.detail_button:active{
+.detail_button:active {
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
 }

@@ -9,6 +9,11 @@ const NavBar = () => {
   const { pageData, setPageData } = useContext(pageContext);
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = (event) => {
+    setIsChecked(event.target.checked);
+  };
 
   const dropDown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -17,6 +22,21 @@ const NavBar = () => {
   const goHome = () => {
     setPageData(null);
     navigate("/");
+  };
+
+  const handleNavigate = (page) => {
+    switch (page) {
+      case 'market':
+        navigate("/");
+        setIsChecked(false);
+        break;
+      case 'mypage':
+        navigate("/mypage");
+        setIsChecked(false);
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -35,33 +55,34 @@ const NavBar = () => {
               {pageData === "1"
                 ? "내 물건 팔기"
                 : pageData === "2"
-                ? "내 물건 수정하기"
-                : "배추마켓"}{" "}
+                  ? "내 물건 수정하기"
+                  : "배추마켓"}{" "}
             </p>
           </div>
         </div>
+
+        {isChecked && <div className="overlay" onClick={() => setIsChecked(false)}></div>}
+        <label className="nav_checkbox_label" htmlFor="nav_menu_small"><img src={isChecked ? '/images/close.svg' : '/images/hamburger.svg'} /></label>
+        <input
+          type="checkbox"
+          id="nav_menu_small"
+          className="nav_menu_small"
+          checked={isChecked}
+          onChange={handleCheckboxChange}
+        />
         <div className="menu_list">
           <ul>
-            <li onClick={() => navigate("/")}>중고거래</li>
-            <li onClick={() => navigate("/mypage")}>마이페이지</li>
+            <li onClick={() => handleNavigate('market')}>중고거래</li>
+            <li onClick={() => handleNavigate('mypage')}>마이페이지</li>
           </ul>
         </div>
-        <div>
+        <div className="login_button2">
           {!user ? (
             <button className="login_button" onClick={() => navigate("/login")}>
               로그인
             </button>
-          ) : (
-            <div className="user_nav_image_container">
-              <img
-                className="user_nav_image"
-                src={user.userProfile}
-                alt="유저 이미지"
-                onClick={dropDown}
-              />
-              {isDropdownOpen && <Dropdown />}
-            </div>
-          )}
+          ) : null}
+
         </div>
       </div>
     </div>

@@ -1,4 +1,50 @@
-.my_page_container{
+.my_page_container {
   text-align: center;
   margin-top: 20px;
+}
+
+.user_info_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.user_my_image_container {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+}
+
+.user_my_image {
+  display: block;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.user_name_container {
+  display: flex;
+  align-items: center;
+}
+
+.user_name_container p {
+  margin-left: 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.my_page_menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.my_menu_item {
+  width: 200px;
+  font-size: 24px;
+  margin-top: 10px;
 }

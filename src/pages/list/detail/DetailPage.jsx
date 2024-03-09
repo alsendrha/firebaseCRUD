@@ -61,14 +61,19 @@ const DetailPage = () => {
         )}
         <div className="detail_user_container">
           <div className="detail_user_main_container">
-            <img
-              className="detail_user_profile_image"
-              src={item.userProfile}
-              alt="userProfile"
-            />
-            <div className="detail_user_text">
-              <p className="detail_user_nick_name">{item.userNickName}</p>
-              <p className="detail_user_address">{item.address}</p>
+            <div className="detail_user_info">
+              <img
+                className="detail_user_profile_image"
+                src={item.userProfile}
+                alt="userProfile"
+              />
+              <div className="detail_user_text">
+                <p className="detail_user_nick_name">{item.userNickName}</p>
+                <p className="detail_user_address">{item.address}</p>
+              </div>
+            </div>
+            <div className="detail_chat">
+              <img src="/images/chat.svg" alt="chat" />
             </div>
           </div>
           <div className="bottom_line"></div>

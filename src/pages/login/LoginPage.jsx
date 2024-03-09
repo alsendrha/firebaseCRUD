@@ -2,7 +2,7 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { userContext } from './UserContext';
-
+import './LoginPage.css';
 const LoginPage = () => {
   const navigate = useNavigate();
   const { setUserData } = useContext(userContext);
@@ -28,31 +28,46 @@ const LoginPage = () => {
       } else if (error.code === 'auth/too-many-requests') {
         alert('너무 많은 요청이 들어왔습니다. 나중에 시도해주세요.');
       } else {
-        console.log(error);
+        console.log('로그인 에러입니다.', error);
       }
     }
   }
 
+  const handleOnKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      login();
+    }
+  };
+
   return (
     <div>
-      <h1>로그인 페이지</h1>
-      <input
-        type='text'
-        value={email}
-        placeholder='아이디'
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <br />
-      <input
-        type='password'
-        value={password}
-        placeholder='비밀번호'
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <br />
-      <button onClick={login}>로그인</button>
-      <br />
-      <button onClick={() => navigate('/signup')}>회원가입</button>
+      <div className='login_container'>
+        <h1><span>배추마켓</span> 로그인</h1>
+        <div className='login_input_container'>
+          <input
+            className='login_input'
+            type='text'
+            value={email}
+            placeholder='login@example.com'
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <br />
+          <input
+            className='login_input'
+            type='password'
+            value={password}
+            placeholder='비밀번호'
+            onChange={(e) => setPassword(e.target.value)}
+            onKeyDown={handleOnKeyPress}
+          />
+        </div>
+        <br />
+        <button className='login_page_button' onClick={login}>로그인</button>
+        <br />
+        <div className='login_page_signup'>
+          <p>아직 회원이 아니시라면 <span onClick={() => navigate('/signup')}>회원가입하기</span></p>
+        </div>
+      </div>
     </div>
   )
 }

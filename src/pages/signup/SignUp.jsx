@@ -5,6 +5,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, doc, setDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadString } from 'firebase/storage';
 import { db, storage } from '../../firebase';
+import { FaCamera } from "react-icons/fa";
 const SignUp = () => {
   const navigate = useNavigate();
   const imageFile = useRef(null);
@@ -13,6 +14,7 @@ const SignUp = () => {
   const [userPassword, setUserPassword] = useState('');
   const [userPasswordCheck, setUserPasswordCheck] = useState('');
   const [userNickName, setUserNickName] = useState('');
+  const [buttonClicked, setButtonClicked] = useState(false);
   let imageUrl = null;
   const handleClick = () => {
     imageFile.current.click();
@@ -47,6 +49,12 @@ const SignUp = () => {
   };
 
   const signUp = async () => {
+    setButtonClicked(true);
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!emailRegex.test(userEmail)) {
+      alert('올바른 이메일 형식을 입력해주세요.');
+      return;
+    }
     try {
       if (!userEmail || !userPassword || !userPasswordCheck || !userNickName) {
         alert('모든 항목을 입력해주세요.');
@@ -54,6 +62,10 @@ const SignUp = () => {
       };
       if (userPassword !== userPasswordCheck) {
         alert('비밀번호가 일치하지 않습니다.')
+        return;
+      }
+      if (userPassword.length < 6) {
+        alert('비밀번호는 6자리 이상이어야 합니다.')
         return;
       }
 
@@ -80,62 +92,83 @@ const SignUp = () => {
       alert('회원가입이 완료되었습니다.');
       navigate('/login');
     } catch (error) {
-      console.error(error);
+      if (error.code === 'auth/email-already-in-use') {
+        alert('이미 사용중인 이메일입니다.');
+        console.error('회원가입 에러코드', error);
+      }
     }
   }
 
   return (
     <div>
-      <h1>회원가입 페이지</h1>
-      {file ?
-        <img
-          className='user_image'
-          src={file}
-          onClick={onClearImageFile}
-          alt='유저 이미지'
-        /> :
-        <div
-          className='image_container'
-          onClick={handleClick}
-        >이미지 등록
-        </div>}
-      <input
-        ref={imageFile}
-        type='file'
-        style={{ display: 'none' }}
-        onChange={(e) => fileUpload(e)}
-      />
-      <input
-        type='email'
-        value={userEmail}
-        placeholder='이메일'
-        onChange={(e) => setUserEmail(e.target.value)}
-      />
-      <br />
-      <input
-        type='password'
-        value={userPassword}
-        placeholder='비밀번호'
-        onChange={(e) => setUserPassword(e.target.value)}
-      />
-      <br />
-      <input
-        type='password'
-        value={userPasswordCheck}
-        placeholder='비밀번호 확인'
-        onChange={(e) => setUserPasswordCheck(e.target.value)}
-      />
-      <br />
-      <input
-        type='text'
-        value={userNickName}
-        placeholder='닉네임'
-        onChange={(e) => setUserNickName(e.target.value)}
-      />
-      <br />
-      <button onClick={signUp}>회원가입</button>
-      <br />
-      <button onClick={() => navigate('/login')}>돌아가기</button>
+      <div className='signup_container'>
+        <div>
+          <h1><span>배추마켓 </span>회원가입</h1>
+          <div className='sign_images_container'>
+            {file ?
+              <img
+                className='user_image'
+                src={file}
+                onClick={onClearImageFile}
+                alt='유저 이미지'
+              /> :
+              <div
+                className='image_container'
+                onClick={handleClick}
+              >
+                <FaCamera className="sign_profile" />
+                <p>프로필 사진</p>
+              </div>}
+          </div>
+          <div className='signup_input_container'>
+            <input
+              ref={imageFile}
+              type='file'
+              style={{ display: 'none' }}
+              onChange={(e) => fileUpload(e)}
+            />
+            <label htmlFor='email'>이메일&nbsp;{buttonClicked && !userEmail ? <span>*이메일 미입력</span> : null}</label>
+            <input
+              className='login_input input_block'
+              type='email'
+              id='email'
+              value={userEmail}
+              placeholder='이메일@example.com'
+              onChange={(e) => setUserEmail(e.target.value)}
+            />
+            <label htmlFor='password'>비밀번호&nbsp;{buttonClicked && !userPassword ? <span>*비밀번호 미입력</span> : null}</label>
+            <input
+              className='login_input input_block'
+              type='password'
+              id='password'
+              value={userPassword}
+              placeholder='비밀번호'
+              onChange={(e) => setUserPassword(e.target.value)}
+            />
+            <label htmlFor='password1'>비밀번호 확인&nbsp;{buttonClicked && !userPasswordCheck ? <span>*비밀번호 미입력</span> : userPassword !== userPasswordCheck ? <span>*비밀번호 불일치</span> : null}</label>
+            <input
+              className='login_input input_block'
+              type='password'
+              id='password1'
+              value={userPasswordCheck}
+              placeholder='비밀번호 확인'
+              onChange={(e) => setUserPasswordCheck(e.target.value)}
+            />
+            <label htmlFor='nickName'>닉네임&nbsp;{buttonClicked && !userNickName ? <span>*닉네임 미입력</span> : null}</label>
+            <input
+              className='login_input input_block'
+              type='text'
+              id='nickName'
+              value={userNickName}
+              placeholder='닉네임'
+              onChange={(e) => setUserNickName(e.target.value)}
+            />
+            <br />
+          </div>
+          <button className='signup_button' onClick={signUp}>회원가입</button>
+          <button className='signup_button' onClick={() => navigate('/login')}>돌아가기</button>
+        </div>
+      </div>
     </div>
   )
 }
