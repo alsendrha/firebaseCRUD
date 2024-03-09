@@ -21,7 +21,7 @@ const LoginPage = () => {
       alert('로그인 성공');
       navigate('/');
     } catch (error) {
-      if (error.code === 'invalid-credential') {
+      if (error.code === 'auth/invalid-credential') {
         alert('존재하지 않는 사용자입니다.');
       } else if (error.code === 'auth/invalid-email') {
         alert('이메일 형식이 잘못되었습니다.');

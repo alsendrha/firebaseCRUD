@@ -1,4 +1,4 @@
-import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp, where } from 'firebase/firestore';
+import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp } from 'firebase/firestore';
 import React, { useContext, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { db } from '../../../firebase';
@@ -10,8 +10,8 @@ const Chat = () => {
   const [newMessage, setnewMessage] = useState('');
   const [messages, setmessages] = useState([]);
   const { user } = useContext(userContext);
-  const messagesRef = collection(db, 'items', itemData.itemId, 'messages');
-  // , where('room', '==', itemData.userNickName)
+  const messagesRef = collection(db, 'items', itemData.itemId, `${itemData.userNickName}`);
+
   useEffect(() => {
     const queryMessages = query(messagesRef, orderBy('createAt', 'desc'));
     const unsuscribe = onSnapshot(queryMessages, (snapshot) => {
@@ -48,7 +48,7 @@ const Chat = () => {
       <div className='messages'>
         {messages.map((message) => (
           <div style={{ justifyContent: user.email === message.email ? 'end' : 'start' }} className='message message_flex' key={message.id}>
-            <img className='user_profile' src={message.userImage} alt='profile' />
+            <img className='user_profile' src={message.userImage ? message.userImage : '/images/no_profile.png'} alt='profile' />
             <span className='user'>
               {message.user}
             </span>

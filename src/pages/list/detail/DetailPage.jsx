@@ -1,6 +1,6 @@
 import { GoogleMap, Marker } from "@react-google-maps/api";
-import { deleteDoc, doc } from "firebase/firestore";
-import React, { useContext, useState } from "react";
+import { collection, deleteDoc, doc, setDoc } from "firebase/firestore";
+import React, { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { db } from "../../../firebase";
 import { userContext } from "../../login/UserContext";
@@ -10,6 +10,7 @@ const DetailPage = () => {
   const navigate = useNavigate();
   const detailData = useLocation();
   const item = detailData.state;
+
   const { user } = useContext(userContext);
   const deleteItem = async () => {
     const result = window.confirm("정말 삭제하시겠습니까?");
@@ -22,22 +23,35 @@ const DetailPage = () => {
     }
   };
 
-  const chat = () => {
+  const chat = async () => {
     if (!user) return navigate("/login");
-    // if (updatedNickName !== item.userNickName) {
-    navigate("/chat", {
-      state: {
-        userNickName: user.nickName,
-        itemId: item.id,
-        userProfile: user.userProfile,
-        email: user.email,
-      },
-    });
-    // }
+    if (user.nickName !== item.userNickName) {
+      const chatUserListRef = doc(db, 'chatUserList', user.nickName);
+      await setDoc(chatUserListRef, {
+        userNickName: user.nickName
+      });
+      navigate("/chat", {
+        state: {
+          userNickName: user.nickName,
+          itemId: item.id,
+          userProfile: user.userProfile,
+          email: user.email,
+        },
+      });
+    } else {
+      navigate("/chatlist", {
+        state: {
+          userNickName: user.nickName,
+          itemId: item.id,
+          userProfile: user.userProfile,
+          email: user.email,
+
+        },
+      });
+    }
   }
 
   const center = { lat: item.lat, lng: item.lng };
-  console.log(item);
   const givenDate = new Date(
     item.date.seconds * 1000 + item.date.nanoseconds / 1000000
   );
