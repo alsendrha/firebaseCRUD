@@ -11,7 +11,6 @@ const DetailPage = () => {
   const detailData = useLocation();
   const item = detailData.state;
   const { user } = useContext(userContext);
-  const [userNickName, setuserNickName] = useState('');
   const deleteItem = async () => {
     const result = window.confirm("정말 삭제하시겠습니까?");
     if (result) {
@@ -25,14 +24,16 @@ const DetailPage = () => {
 
   const chat = () => {
     if (!user) return navigate("/login");
-    const updatedNickName = user.nickName;
-    if (updatedNickName !== item.userNickName) {
-      navigate("/chat", {
-        state: {
-          userNickName: updatedNickName,
-        },
-      });
-    }
+    // if (updatedNickName !== item.userNickName) {
+    navigate("/chat", {
+      state: {
+        userNickName: user.nickName,
+        itemId: item.id,
+        userProfile: user.userProfile,
+        email: user.email,
+      },
+    });
+    // }
   }
 
   const center = { lat: item.lat, lng: item.lng };

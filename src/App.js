@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "react-query";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import Footer from "./components/footer/Footer";
 import NavBar from "./components/nav/NavBar";
@@ -14,12 +14,15 @@ import Chat from "./pages/list/chat/Chat";
 const queryClient = new QueryClient();
 
 const Layout = () => {
+  const location = useLocation();
+  const isChatPage = location.pathname === "/chat";
+
   return (
     <div className="layout-container">
       <NavBar />
       <div className="gap"></div>
       <Outlet />
-      <Footer />
+      {!isChatPage && <Footer />}
     </div>
   );
 };

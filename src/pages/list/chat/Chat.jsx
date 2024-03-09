@@ -1,18 +1,19 @@
 import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp, where } from 'firebase/firestore';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { db } from '../../../firebase';
 import './Chat.css'
+import { userContext } from '../../login/UserContext';
 const Chat = () => {
-  const userNickName = useLocation().state;
-  console.log('이건 안나오나', userNickName);
+  const itemData = useLocation().state;
+  console.log('이건 안나오나', itemData);
   const [newMessage, setnewMessage] = useState('');
   const [messages, setmessages] = useState([]);
-
-  const messagesRef = collection(db, 'messages');
-
+  const { user } = useContext(userContext);
+  const messagesRef = collection(db, 'items', itemData.itemId, 'messages');
+  // , where('room', '==', itemData.userNickName)
   useEffect(() => {
-    const queryMessages = query(messagesRef, where('room', '==', userNickName.userNickName), orderBy('createAt'));
+    const queryMessages = query(messagesRef, orderBy('createAt', 'desc'));
     const unsuscribe = onSnapshot(queryMessages, (snapshot) => {
       let messages = [];
       snapshot.forEach((doc) => {
@@ -33,8 +34,9 @@ const Chat = () => {
     await addDoc(messagesRef, {
       text: newMessage,
       createAt: serverTimestamp(),
-      user: userNickName.userNickName,
-      room: userNickName.userNickName,
+      user: itemData.userNickName,
+      userImage: itemData.userProfile,
+      email: itemData.email
     });
 
     setnewMessage('');
@@ -42,8 +44,19 @@ const Chat = () => {
   console.log('채팅 내용', messages);
   return (
     <div className='chat-app'>
-      <div className='header'><h1>welcome to : {userNickName.userNickName}</h1></div>
-      <div className='messages'>{messages.map((message) => (<div className='message' key={message.id}><span className='user'>{message.user}</span>{message.text}</div>))}</div>
+      <div className='header'><h1>welcome to : {itemData.userNickName}</h1></div>
+      <div className='messages'>
+        {messages.map((message) => (
+          <div style={{ justifyContent: user.email === message.email ? 'end' : 'start' }} className='message message_flex' key={message.id}>
+            <img className='user_profile' src={message.userImage} alt='profile' />
+            <span className='user'>
+              {message.user}
+            </span>
+            <p>{message.text}</p>
+          </div>
+        )
+        )}
+      </div>
       <form onSubmit={handleSubmit} className='new_message-form'>
         <input
           className='new-message-input'
