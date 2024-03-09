@@ -1,6 +1,6 @@
 import { GoogleMap, Marker } from "@react-google-maps/api";
 import { deleteDoc, doc } from "firebase/firestore";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { db } from "../../../firebase";
 import { userContext } from "../../login/UserContext";
@@ -11,6 +11,7 @@ const DetailPage = () => {
   const detailData = useLocation();
   const item = detailData.state;
   const { user } = useContext(userContext);
+  const [userNickName, setuserNickName] = useState('');
   const deleteItem = async () => {
     const result = window.confirm("정말 삭제하시겠습니까?");
     if (result) {
@@ -21,6 +22,19 @@ const DetailPage = () => {
       return;
     }
   };
+
+  const chat = () => {
+    if (!user) return navigate("/login");
+    const updatedNickName = user.nickName;
+    if (updatedNickName !== item.userNickName) {
+      navigate("/chat", {
+        state: {
+          userNickName: updatedNickName,
+        },
+      });
+    }
+  }
+
   const center = { lat: item.lat, lng: item.lng };
   console.log(item);
   const givenDate = new Date(
@@ -72,7 +86,7 @@ const DetailPage = () => {
                 <p className="detail_user_address">{item.address}</p>
               </div>
             </div>
-            <div className="detail_chat">
+            <div className="detail_chat" onClick={chat}>
               <img src="/images/chat.svg" alt="chat" />
             </div>
           </div>

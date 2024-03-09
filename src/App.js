@@ -9,6 +9,7 @@ import DetailPage from "./pages/list/detail/DetailPage";
 import LoginPage from "./pages/login/LoginPage";
 import MyPage from "./pages/mypage/MyPage";
 import SignUp from "./pages/signup/SignUp";
+import Chat from "./pages/list/chat/Chat";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ function App() {
               <Route path="/mypage" element={<MyPage />} />
               <Route path="/insert/:itemId" element={<ListInsertPage />} />
               <Route path="/detail" element={<DetailPage />} />
+              <Route path="/chat" element={<Chat />} />
             </Route>
           </Routes>
         </BrowserRouter>
