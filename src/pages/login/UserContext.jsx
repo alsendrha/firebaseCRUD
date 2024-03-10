@@ -27,7 +27,6 @@ export function UserProvider(props) {
     if (userData === null) return;
     const fetchData = async () => {
       const getData = await getDoc(doc(db, "users", loginUser));
-      console.log("여기 유저 정보 : ", getData.data());
       setUser(getData.data());
     };
     fetchData();

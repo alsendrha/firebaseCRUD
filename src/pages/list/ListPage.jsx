@@ -13,7 +13,6 @@ const ListPage = () => {
   async function getItemsData() {
     const q = query(collection(db, "items"), orderBy("date", "desc"));
     const getData = await getDocs(q);
-    console.log(getData.docs.map((doc) => doc.data()));
     if (getData.docs.length === 0) {
       setIsLoading(true);
     } else {

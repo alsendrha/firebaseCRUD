@@ -6,13 +6,13 @@ import './Chat.css'
 import { userContext } from '../../login/UserContext';
 const Chat = () => {
   const itemData = useLocation().state;
-  console.log('이건 안나오나', itemData);
   const [newMessage, setnewMessage] = useState('');
   const [messages, setmessages] = useState([]);
   const { user } = useContext(userContext);
-  const messagesRef = collection(db, 'items', itemData.itemId, `${itemData.userNickName}`);
 
+  const messagesRef = itemData ? collection(db, 'items', itemData.itemId, `${itemData.collection}`) : null;
   useEffect(() => {
+    if (!itemData) return;
     const queryMessages = query(messagesRef, orderBy('createAt', 'desc'));
     const unsuscribe = onSnapshot(queryMessages, (snapshot) => {
       let messages = [];
@@ -26,6 +26,7 @@ const Chat = () => {
 
   }, [])
 
+  if (!itemData) return;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,12 +37,12 @@ const Chat = () => {
       createAt: serverTimestamp(),
       user: itemData.userNickName,
       userImage: itemData.userProfile,
-      email: itemData.email
+      email: itemData.userEmail,
     });
 
     setnewMessage('');
   }
-  console.log('채팅 내용', messages);
+
   return (
     <div className='chat-app'>
       <div className='header'><h1>welcome to : {itemData.userNickName}</h1></div>

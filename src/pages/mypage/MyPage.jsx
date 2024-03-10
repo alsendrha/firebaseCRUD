@@ -9,6 +9,8 @@ const MyPage = () => {
   const navigate = useNavigate();
   console.log('여기는 마이페이지', user);
 
+  if (!user) return null;
+
   const handleLogOut = () => {
     const result = window.confirm("로그아웃 하시겠습니까?");
     if (result) {

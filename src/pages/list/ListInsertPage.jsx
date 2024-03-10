@@ -32,13 +32,13 @@ const ListInsertPage = () => {
 
   let imageUrl = null;
   const { setPageData } = useContext(pageContext);
+
   const getItem = async () => {
+    if (!itemId.state) return null;
     const docRef = doc(db, "items", itemId.state.id);
     const item = (await getDoc(docRef)).data();
-    console.log(item);
 
     if (params.itemId === "2") {
-      console.log("여기로오면 수정하기임");
       setTitle(item.title);
       setContent(item.content);
       setFile(item.imageUrl);
@@ -146,17 +146,16 @@ const ListInsertPage = () => {
     setIsLoading(false);
     setPageData(null);
     navigate("/");
-    console.log("보내짐");
   };
 
   const itemUpdate = async () => {
+    if (!itemId) return null;
     try {
       if (title === "" || content === "") {
         alert("제목과 내용을 입력해주세요.");
         return;
       }
 
-      console.log("이건 아이디임", itemId.state.id);
       if (!itemId.state.id) return;
       const validDataUrlRegex =
         /^data:([a-zA-Z0-9]+\/[a-zA-Z0-9-.+]+)?(?:;base64)?,(.*)$/;
@@ -164,7 +163,6 @@ const ListInsertPage = () => {
       setIsLoading(true);
       if (validDataUrlRegex.test(file)) {
         if (file) {
-          console.log("여기 들어오나?");
           const storageRef = ref(storage, `images/${itemId.state.id}`);
           await uploadString(storageRef, file, "data_url");
           newImageUrl = await getDownloadURL(
@@ -183,7 +181,6 @@ const ListInsertPage = () => {
         lng: position.lng,
         address: getAddress,
       };
-      console.log("이미지 체크", newImageUrl);
       if (
         newImageUrl !== null &&
         newImageUrl !== "" &&
@@ -196,13 +193,15 @@ const ListInsertPage = () => {
       setIsLoading(false);
       setPageData(null);
       navigate("/");
-      console.log("보내짐");
     } catch (error) {
       console.log("error", error);
     }
   };
-  // console.log("이건 이미지 파일 입니다.", file);
 
+  if (params.itemId === "2") {
+    if (!itemId) return null;
+  }
+  if (!itemId.state) return null;
   return (
     <div className="list_insert_main_container">
       {isLoading ? (
@@ -276,11 +275,9 @@ const ListInsertPage = () => {
               id="content"
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              placeholder={`${
-                isSelect === 1 ? "판매" : "나눔"
-              }할 물품에 대한 내용을 작성해 주세요.\n(${
-                isSelect === 1 ? "판매" : "나눔"
-              } 금지 물품은 게시가 제한될 수 있어요.)\n\n신뢰할 수 있는 거래를 위해 자세히 적어주세요.`}
+              placeholder={`${isSelect === 1 ? "판매" : "나눔"
+                }할 물품에 대한 내용을 작성해 주세요.\n(${isSelect === 1 ? "판매" : "나눔"
+                } 금지 물품은 게시가 제한될 수 있어요.)\n\n신뢰할 수 있는 거래를 위해 자세히 적어주세요.`}
             />
           </div>
           <label>거래 희망 장소</label>

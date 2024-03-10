@@ -2,14 +2,19 @@ import { collection, getDocs } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { db } from '../../../firebase';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Chat from './Chat';
 
 const ChatListPage = () => {
   const [chatUsers, setchatUsers] = useState([]);
   const navigate = useNavigate();
   const itemData = useLocation().state;
+
+  useEffect(() => {
+    getUserChatList();
+  }, []);
+
   const getUserChatList = async () => {
-    const chatUserListRef = collection(db, 'chatUserList');
+    if (!itemData) return;
+    const chatUserListRef = collection(db, `${itemData.itemId}`);
     const querySnapshot = await getDocs(chatUserListRef);
     const chatUserList = [];
     querySnapshot.forEach((doc) => {
@@ -22,15 +27,9 @@ const ChatListPage = () => {
     setchatUsers(chatUserList);
   }
 
-  console.log(itemData);
-
-  useEffect(() => {
-    getUserChatList();
-  }, [])
-
-  console.log('채팅 유저 목록', chatUsers);
 
 
+  if (!itemData) return;
 
   return (
     <div>
@@ -41,10 +40,11 @@ const ChatListPage = () => {
             <div key={user.id}>
               <div onClick={() => navigate('/chat', {
                 state: {
-                  userNickName: user.id,
+                  userNickName: itemData.userNickName,
                   itemId: itemData.itemId,
                   userProfile: itemData.userProfile,
-                  email: itemData.email,
+                  collection: user.email,
+                  userEmail: itemData.userEmail,
                 }
               }
               )}>{user.userNickName}</div>

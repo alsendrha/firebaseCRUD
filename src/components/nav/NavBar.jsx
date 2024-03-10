@@ -31,7 +31,7 @@ const NavBar = () => {
         setIsChecked(false);
         break;
       case 'mypage':
-        navigate("/mypage");
+        user ? navigate("/mypage") : navigate("/login");
         setIsChecked(false);
         break;
       default:
@@ -52,11 +52,7 @@ const NavBar = () => {
           </div>
           <div>
             <p className="logo_title">
-              {pageData === "1"
-                ? "내 물건 팔기"
-                : pageData === "2"
-                  ? "내 물건 수정하기"
-                  : "배추마켓"}{" "}
+              배추마켓
             </p>
           </div>
         </div>
