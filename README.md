@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# firebase를 이용한 당근마켓 카피 배추마켓
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
