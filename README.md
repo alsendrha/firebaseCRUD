@@ -4,8 +4,6 @@
 
 
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-![343](https://github.com/alsendrha/firebaseCRUD/assets/95726561/c6b434d3-5af8-40b7-9713-4d4180cbd122)
 If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
