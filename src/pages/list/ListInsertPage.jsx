@@ -199,9 +199,8 @@ const ListInsertPage = () => {
   };
 
   if (params.itemId === "2") {
-    if (!itemId) return null;
+    if (!itemId.state) return null;
   }
-  if (!itemId.state) return null;
   return (
     <div className="list_insert_main_container">
       {isLoading ? (
