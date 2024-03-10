@@ -1,6 +1,6 @@
 import { GoogleMap, Marker } from "@react-google-maps/api";
-import { deleteDoc, doc, setDoc } from "firebase/firestore";
-import React, { useContext } from "react";
+import { collection, deleteDoc, doc, getDocs, setDoc, where } from "firebase/firestore";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { db } from "../../../firebase";
 import { userContext } from "../../login/UserContext";
@@ -10,9 +10,22 @@ const DetailPage = () => {
   const navigate = useNavigate();
   const detailData = useLocation();
   const item = detailData.state;
-  const { user } = useContext(userContext);
+  const { userData, user } = useContext(userContext);
+  const [newMessage, setNewMessage] = useState([]);
+
+
+  useEffect(() => {
+    if (!item) return null;
+    getNewMessage();
+  }, [])
+
   if (!item) return null;
 
+  const getNewMessage = async () => {
+    const messages = await getDocs(collection(db, `${item.id}`), where('newNmessage', '==', true))
+    setNewMessage(messages.docs.map(doc => doc.data().newMessage));
+  };
+  console.log(newMessage);
   const deleteItem = async () => {
     const result = window.confirm("정말 삭제하시겠습니까?");
     if (result) {
@@ -23,7 +36,7 @@ const DetailPage = () => {
       return;
     }
   };
-  console.log(user);
+  console.log('이거 지금 내가 확인하는거', newMessage);
   const chat = async () => {
     if (!user) return navigate("/login");
     if (user.nickName !== item.userNickName) {
@@ -32,6 +45,7 @@ const DetailPage = () => {
         email: user.email,
         userNickName: user.nickName,
         collection: user.email,
+        newMessage: false,
         createAt: new Date(),
       });
       navigate("/chat", {
@@ -109,6 +123,7 @@ const DetailPage = () => {
               </div>
             </div>
             <div className="detail_chat" onClick={chat}>
+              {item.user === userData?.user.uid && newMessage.includes(true) ? <p className="detail_new_chat">*</p> : null}
               <img src="/images/chat.svg" alt="chat" />
             </div>
           </div>

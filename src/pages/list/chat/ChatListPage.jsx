@@ -1,4 +1,4 @@
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, doc, getDocs, updateDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { db } from '../../../firebase';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -27,6 +27,24 @@ const ChatListPage = () => {
     setchatUsers(chatUserList);
   }
 
+  const chat = async (user) => {
+    console.log(itemData.userEmail)
+    const newchat = doc(db, `${itemData.itemId}`, `${user.email}`)
+    await updateDoc(newchat, {
+      newMessage: false,
+    })
+    navigate('/chat', {
+      state: {
+        userNickName: itemData.userNickName,
+        itemId: itemData.itemId,
+        userProfile: itemData.userProfile,
+        collection: user.email,
+        userEmail: itemData.userEmail,
+      }
+    }
+    )
+  }
+
 
 
   if (!itemData) return;
@@ -38,16 +56,10 @@ const ChatListPage = () => {
         <div style={{ cursor: 'pointer' }}>
           {chatUsers.map((user) => (
             <div key={user.id}>
-              <div onClick={() => navigate('/chat', {
-                state: {
-                  userNickName: itemData.userNickName,
-                  itemId: itemData.itemId,
-                  userProfile: itemData.userProfile,
-                  collection: user.email,
-                  userEmail: itemData.userEmail,
-                }
-              }
-              )}>{user.userNickName}</div>
+              <div onClick={() => chat(user)}>
+                {user.userNickName}
+                {user.newMessage ? <span style={{ color: 'red' }}>new</span> : null}
+              </div>
             </div>
           ))}
         </div>

@@ -54,7 +54,15 @@
 }
 
 .detail_chat {
+  display: flex;
   cursor: pointer;
+  align-items: center;
+}
+
+.detail_new_chat {
+  margin-right: 10px;
+  font-size: 16px;
+  color: red;
 }
 
 .bottom_line {

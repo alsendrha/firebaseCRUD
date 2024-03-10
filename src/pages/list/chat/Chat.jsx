@@ -1,4 +1,4 @@
-import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp } from 'firebase/firestore';
+import { addDoc, collection, doc, onSnapshot, orderBy, query, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
 import React, { useContext, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { db } from '../../../firebase';
@@ -39,8 +39,12 @@ const Chat = () => {
       userImage: itemData.userProfile,
       email: itemData.userEmail,
     });
-
     setnewMessage('');
+    if (itemData.collection !== itemData.userEmail) return;
+    const newchat = doc(db, `${itemData.itemId}`, `${itemData.userEmail}`)
+    await updateDoc(newchat, {
+      newMessage: true,
+    })
   }
 
   return (
