@@ -2,34 +2,27 @@
 
 1인 미니 프로젝트로 당근마켓(웹)을 카피하여 개발하였습니다 [배추마켓 바로가기](https://github.com/alsendrha/firebaseCRUD).
 
-## Available Scripts
+## 사용한 플러그인
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
+"@googlemaps/react-wrapper": "^1.1.35",
+    "@react-google-maps/api": "^2.19.3",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.6.7",
+    "browser-image-compression": "^2.0.2",
+    "firebase": "^10.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-geocode": "^1.0.0-alpha.1",
+    "react-icons": "^5.0.1",
+    "react-kakao-maps-sdk": "^1.1.26",
+    "react-query": "^3.39.3",
+    "react-router-dom": "^6.22.2",
+    "react-scripts": "5.0.1",
+    "react-uuid": "^2.0.0",
+    "styled-components": "^6.1.8",
+    "web-vitals": "^2.1.4"
 
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
