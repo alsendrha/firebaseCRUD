@@ -2,28 +2,6 @@
 
 1인 미니 프로젝트로 당근마켓(웹)을 카피하여 개발하였습니다 [배추마켓 바로가기](https://github.com/alsendrha/firebaseCRUD).
 
-## 사용한 플러그인
-
-@googlemaps/react-wrapper": "^1.1.35.
-@react-google-maps/api": "^2.19.3.
-@testing-library/jest-dom": "^5.17.0.
-@testing-library/react": "^13.4.0.
-@testing-library/user-event": "^13.5.0.
-axios": "^1.6.7.
-browser-image-compression": "^2.0.2.
-firebase": "^10.8.1.
-react": "^18.2.0.
-react-dom": "^18.2.0.
-react-geocode": "^1.0.0-alpha.1.
-react-icons": "^5.0.1.
-react-kakao-maps-sdk": "^1.1.26.
-react-query": "^3.39.3.
-react-router-dom": "^6.22.2.
-react-scripts": "5.0.1.
-react-uuid": "^2.0.0.
-styled-components": "^6.1.8.
-web-vitals": "^2.1.4.
-
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
 If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
