@@ -1,6 +1,7 @@
 # firebase를 이용한 당근마켓 카피 배추마켓
 
 1인 미니 프로젝트로 당근마켓(웹)을 카피하여 개발하였습니다 [배추마켓 바로가기](https://github.com/alsendrha/firebaseCRUD).
+![343](https://github.com/alsendrha/firebaseCRUD/assets/95726561/c6b434d3-5af8-40b7-9713-4d4180cbd122)
 
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
