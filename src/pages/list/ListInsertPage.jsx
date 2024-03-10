@@ -74,7 +74,7 @@ const ListInsertPage = () => {
       return;
     }
     const reader = new FileReader();
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(compressedFile);
     return new Promise((resolve) => {
       reader.onload = () => {
         setFile(reader.result);
