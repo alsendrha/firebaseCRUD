@@ -1,6 +1,6 @@
 # firebase를 이용한 당근마켓 카피 배추마켓
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1인 미니 프로젝트로 당근마켓(웹)을 카피하여 개발하였습니다 [Create React App](https://github.com/alsendrha/firebaseCRUD).
 
 ## Available Scripts
 
