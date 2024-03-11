@@ -274,9 +274,11 @@ const ListInsertPage = () => {
               id="content"
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              placeholder={`${isSelect === 1 ? "판매" : "나눔"
-                }할 물품에 대한 내용을 작성해 주세요.\n(${isSelect === 1 ? "판매" : "나눔"
-                } 금지 물품은 게시가 제한될 수 있어요.)\n\n신뢰할 수 있는 거래를 위해 자세히 적어주세요.`}
+              placeholder={`${
+                isSelect === 1 ? "판매" : "나눔"
+              }할 물품에 대한 내용을 작성해 주세요.\n(${
+                isSelect === 1 ? "판매" : "나눔"
+              } 금지 물품은 게시가 제한될 수 있어요.)\n\n신뢰할 수 있는 거래를 위해 자세히 적어주세요.`}
             />
           </div>
           <label>거래 희망 장소</label>
