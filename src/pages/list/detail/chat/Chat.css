@@ -58,16 +58,70 @@
   /* 스크롤바 색상 */
 }
 
+.user_massage_container{
+  display: flex;
+  align-items: start;
+}
+
+.massage_user_info{
+  display: flex;
+  align-items: center;
+}
+
+.massage_text_container{
+  position: relative;
+  margin: 0 10px 0 10px;
+}
+
+.massage_text{
+  padding: 10px;
+  max-width: 200px;
+  word-wrap: break-word;
+  background-color: green;
+  border-radius: 10px;
+}
+
+.massage_text::after{
+  content: '';
+  position: absolute;
+  right: -6px;
+  /* left: -6px; */
+  top: 0;
+  transform: rotate(60deg);
+  border: 10px solid;
+  border-color: transparent green transparent transparent;
+  z-index: -1;
+}
+
+.massage_text1 {
+  padding: 10px;
+  max-width: 200px;
+  word-wrap: break-word;
+  background-color: green;
+  border-radius: 10px;
+}
+
+.massage_text1::after {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 0;
+  transform: rotate(120deg);
+  border: 10px solid;
+  border-color: transparent green transparent transparent;
+  z-index: -1;
+}
+
 .user_profile {
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  margin-right: 10px;
+  margin: 0 5px 0 5px;
 }
 
 .user {
   font-weight: bold;
-  margin-right: 10px;
+  margin: 0 5px 0 5px;
   color: black;
 }
 

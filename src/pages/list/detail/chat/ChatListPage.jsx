@@ -1,7 +1,7 @@
 import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { db } from "../../../firebase";
+import { db } from "../../../../firebase";
 import "./ChatListPage.css";
 const ChatListPage = () => {
   const [chatUsers, setchatUsers] = useState([]);
@@ -49,19 +49,17 @@ const ChatListPage = () => {
   return (
     <div className="chat_list_container">
       <h1>채팅 목록</h1>
-      <div>
-        <div className="chat_list_user_items">
-          {chatUsers.map((user) => (
-            <div className="chat_list_user_item" key={user.id}>
-              <div onClick={() => chat(user)}>
-                <p>{user.userNickName}</p>
-                {user.newMessage ? (
-                  <span style={{ color: "red" }}>new</span>
-                ) : null}
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="chat_list_user_items">
+        {chatUsers.map((user) => (
+          <div
+            className="chat_list_user_item"
+            key={user.id}
+            onClick={() => chat(user)}
+          >
+            <p>{user.userNickName}</p>
+            {user.newMessage ? <span style={{ color: "red" }}>new</span> : null}
+          </div>
+        ))}
       </div>
     </div>
   );
