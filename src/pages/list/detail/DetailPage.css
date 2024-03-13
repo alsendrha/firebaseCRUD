@@ -16,7 +16,7 @@
   flex-direction: column;
   width: 600px;
   margin: 30px auto;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .detail_user_main_container {
@@ -39,7 +39,7 @@
 
 .detail_user_text {
   margin-left: 10px;
-  text-align: start;
+  text-align: flex-start;
 }
 
 .detail_user_nick_name {
@@ -73,7 +73,7 @@
 .detail_content_container {
   width: 600px;
   margin: 30px auto;
-  text-align: start;
+  text-align: flex-start;
 }
 
 .detail_item_title {

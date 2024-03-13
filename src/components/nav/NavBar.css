@@ -55,6 +55,7 @@
   color: black;
   font-size: 16px;
   cursor: pointer;
+  line-height: 24px;
 }
 
 .nav_menu_small {
@@ -73,7 +74,7 @@
   display: flex;
   list-style: none;
   padding-left: -10px;
-  justify-content: start;
+  justify-content: flex-start;
 
 }
 

@@ -42,10 +42,10 @@
 }
 
 .signup_input_container {
-  width: 212px;
   display: flex;
+  width: 212px;
   flex-direction: column;
-  align-items: start;
+  align-items: flex-start;
   margin: 20px auto;
 }
 
@@ -67,6 +67,27 @@
   display: inline;
 }
 
+.nick_name_container{
+  display: flex;
+  align-items: flex-end;
+}
+
+.double_check{
+  margin-left: 10px;
+  width: 70px;
+  height: 31px;
+  border: 0.5px solid #95c70c;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: box-shadow 0.3s;
+}
+
+.double_check:active {
+  box-shadow: none;
+}
+
 .signup_button {
   width: 100px;
   height: 30px;
@@ -77,6 +98,7 @@
   border: none;
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.4);
   cursor: pointer;
+  transition: box-shadow 0.3s;
 }
 
 .signup_button:active {
