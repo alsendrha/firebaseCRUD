@@ -1,5 +1,12 @@
 import { GoogleMap, Marker } from "@react-google-maps/api";
-import { collection, deleteDoc, doc, getDocs, setDoc, where } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  setDoc,
+  where,
+} from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { db } from "../../../firebase";
@@ -13,17 +20,19 @@ const DetailPage = () => {
   const { userData, user } = useContext(userContext);
   const [newMessage, setNewMessage] = useState([]);
 
-
   useEffect(() => {
     if (!item) return null;
     getNewMessage();
-  }, [])
+  }, []);
 
   if (!item) return null;
 
   const getNewMessage = async () => {
-    const messages = await getDocs(collection(db, `${item.id}`), where('newNmessage', '==', true))
-    setNewMessage(messages.docs.map(doc => doc.data().newMessage));
+    const messages = await getDocs(
+      collection(db, `${item.id}`),
+      where("newNmessage", "==", true)
+    );
+    setNewMessage(messages.docs.map((doc) => doc.data().newMessage));
   };
   console.log(newMessage);
   const deleteItem = async () => {
@@ -36,7 +45,7 @@ const DetailPage = () => {
       return;
     }
   };
-  console.log('이거 지금 내가 확인하는거', newMessage);
+  console.log("이거 지금 내가 확인하는거", newMessage);
   const chat = async () => {
     if (!user) return navigate("/login");
     if (user.nickName !== item.userNickName) {
@@ -68,7 +77,7 @@ const DetailPage = () => {
         },
       });
     }
-  }
+  };
 
   const center = { lat: item.lat, lng: item.lng };
   const givenDate = new Date(
@@ -96,7 +105,6 @@ const DetailPage = () => {
 
   console.log("주어진 시간으로부터 " + timeAgo);
 
-
   return (
     <div>
       <div className="detail_container">
@@ -123,7 +131,9 @@ const DetailPage = () => {
               </div>
             </div>
             <div className="detail_chat" onClick={chat}>
-              {item.user === userData?.user.uid && newMessage.includes(true) ? <p className="detail_new_chat">*</p> : null}
+              {item.user === userData?.user.uid && newMessage.includes(true) ? (
+                <p className="detail_new_chat">*</p>
+              ) : null}
               <img src="/images/chat.svg" alt="chat" />
             </div>
           </div>
@@ -142,7 +152,7 @@ const DetailPage = () => {
           <GoogleMap
             center={center}
             zoom={17}
-            mapContainerStyle={{ width: "100vw" }}
+            mapContainerStyle={{ width: "100%", height: "700px" }}
             options={{
               zoomControl: false,
               scrollwheel: true,

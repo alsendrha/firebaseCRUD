@@ -8,7 +8,7 @@ import { GoChevronRight } from "react-icons/go";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import uuid from "react-uuid";
 import styled from "styled-components";
-import InsertModal from "../../components/InsertModal";
+import InsertModal from "../../components/input_modal/InsertModal";
 import { db, storage } from "../../firebase";
 import { pageContext } from "./InsertContext";
 
