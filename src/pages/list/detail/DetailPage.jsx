@@ -20,21 +20,21 @@ const DetailPage = () => {
   const { userData, user } = useContext(userContext);
   const [newMessage, setNewMessage] = useState([]);
 
-  useEffect(() => {
-    if (!item) return null;
-    getNewMessage();
-  }, []);
-
-  if (!item) return null;
-
   const getNewMessage = async () => {
+    if (!item) return;
     const messages = await getDocs(
       collection(db, `${item.id}`),
       where("newNmessage", "==", true)
     );
     setNewMessage(messages.docs.map((doc) => doc.data().newMessage));
   };
-  console.log(newMessage);
+
+  useEffect(() => {
+    getNewMessage();
+  }, []);
+
+  if (!item) return;
+
   const deleteItem = async () => {
     const result = window.confirm("정말 삭제하시겠습니까?");
     if (result) {
@@ -45,7 +45,6 @@ const DetailPage = () => {
       return;
     }
   };
-  console.log("이거 지금 내가 확인하는거", newMessage);
   const chat = async () => {
     if (!user) return navigate("/login");
     if (user.nickName !== item.userNickName) {
@@ -67,7 +66,7 @@ const DetailPage = () => {
         },
       });
     } else {
-      navigate("/chatlist", {
+      navigate("/chat_list", {
         state: {
           userNickName: user.nickName,
           itemId: item.id,

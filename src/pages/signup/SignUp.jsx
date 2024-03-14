@@ -62,7 +62,6 @@ const SignUp = () => {
       where("nickName", "==", userNickName)
     );
     let nickNameArray = nickName.docs.map((doc) => doc.data().nickName);
-    console.log(nickNameArray);
     if (!nickNameArray.includes(userNickName)) {
       setNickCheck(true);
       alert("사용 가능한 닉네임입니다.");

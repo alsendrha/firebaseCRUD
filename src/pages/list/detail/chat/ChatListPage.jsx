@@ -28,7 +28,6 @@ const ChatListPage = () => {
   };
 
   const chat = async (user) => {
-    console.log(itemData.userEmail);
     const newchat = doc(db, `${itemData.itemId}`, `${user.email}`);
     await updateDoc(newchat, {
       newMessage: false,

@@ -40,8 +40,8 @@ const NavBar = () => {
         navigate("/");
         setIsChecked(false);
         break;
-      case "mypage":
-        user ? navigate("/mypage") : navigate("/login");
+      case "my_page":
+        user ? navigate("/my_page") : navigate("/login");
         setIsChecked(false);
         break;
       default:
@@ -88,7 +88,7 @@ const NavBar = () => {
         <div className="menu_list">
           <ul>
             <li onClick={() => handleNavigate("market")}>중고거래</li>
-            <li onClick={() => handleNavigate("mypage")}>마이페이지</li>
+            <li onClick={() => handleNavigate("my_page")}>마이페이지</li>
           </ul>
         </div>
         <div className="nav_search_container">

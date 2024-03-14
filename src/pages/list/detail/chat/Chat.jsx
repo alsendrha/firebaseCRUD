@@ -29,7 +29,6 @@ const Chat = () => {
   };
 
   useEffect(() => {
-    console.log("여긴 유즈이펙트");
     if (!itemData) return;
     const queryMessages = query(messagesRef, orderBy("createAt", "desc"));
     const unsubscribe = onSnapshot(queryMessages, (snapshot) => {

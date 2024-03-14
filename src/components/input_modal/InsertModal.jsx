@@ -27,7 +27,6 @@ const InsertModal = ({ setIsModal, setPosition, setGetAddress }) => {
                 result[0].road_address.building_name
             : result[0].address.address_name
         );
-        console.log(result[0]);
       } else {
         console.log("주소를 가져오지 못했습니다.");
       }
