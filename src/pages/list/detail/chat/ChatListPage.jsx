@@ -48,18 +48,24 @@ const ChatListPage = () => {
 
   return (
     <div className="chat_list_container">
-      <h1>채팅 목록</h1>
-      <div className="chat_list_user_items">
-        {chatUsers.map((user) => (
-          <div
-            className="chat_list_user_item"
-            key={user.id}
-            onClick={() => chat(user)}
-          >
-            <p>{user.userNickName}</p>
-            {user.newMessage ? <span style={{ color: "red" }}>new</span> : null}
-          </div>
-        ))}
+      <div className="chat_list_main">
+        <div className="chat_list_title">
+          <h1>채팅 목록</h1>
+        </div>
+        <div className="chat_list_user_items">
+          {chatUsers.map((user) => (
+            <div
+              className="chat_list_user_item"
+              key={user.id}
+              onClick={() => chat(user)}
+            >
+              <p>{user.userNickName}</p>
+              {user.newMessage ? (
+                <span style={{ color: "red" }}>new</span>
+              ) : null}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -23,7 +23,13 @@ const Chat = () => {
   const messagesRef = itemData
     ? collection(db, "items", itemData.itemId, `${itemData.collection}`)
     : null;
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   useEffect(() => {
+    console.log("여긴 유즈이펙트");
     if (!itemData) return;
     const queryMessages = query(messagesRef, orderBy("createAt", "desc"));
     const unsubscribe = onSnapshot(queryMessages, (snapshot) => {
@@ -32,14 +38,11 @@ const Chat = () => {
         messages.push({ ...doc.data(), id: doc.id });
       });
       setMessages(messages);
+      scrollToBottom();
     });
 
     return () => unsubscribe();
   }, []);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
 
   if (!itemData) return;
 

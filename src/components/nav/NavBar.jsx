@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { pageContext } from "../../pages/list/InsertContext";
 import { userContext } from "../../pages/login/UserContext";
-import Dropdown from "../Dropdown";
 import "./NavBar.css";
 const NavBar = () => {
   const { user } = useContext(userContext);
@@ -10,9 +9,23 @@ const NavBar = () => {
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+  const [isSearchChecked, setIsSearchChecked] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 1200) {
+      console.log("일단 이렇게");
+      setIsSearchChecked(false);
+      setIsChecked(false);
+    }
+  });
 
   const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked);
+  };
+
+  const handleSearCheckBoxChange = (event) => {
+    setIsSearchChecked(event.target.checked);
   };
 
   const dropDown = () => {
@@ -26,16 +39,22 @@ const NavBar = () => {
 
   const handleNavigate = (page) => {
     switch (page) {
-      case 'market':
+      case "market":
         navigate("/");
         setIsChecked(false);
         break;
-      case 'mypage':
+      case "mypage":
         user ? navigate("/mypage") : navigate("/login");
         setIsChecked(false);
         break;
       default:
         break;
+    }
+  };
+
+  const handleSearch = (e) => {
+    if (e.key === "Enter") {
+      navigate(`/search/`, { state: { searchValue } });
     }
   };
 
@@ -51,14 +70,14 @@ const NavBar = () => {
             <img src="/images/logo.png" alt="로고" className="logo" />
           </div>
           <div>
-            <p className="logo_title">
-              배추마켓
-            </p>
+            <p className="logo_title">배추마켓</p>
           </div>
         </div>
 
-        {isChecked && <div className="overlay" onClick={() => setIsChecked(false)}></div>}
-        <label className="nav_checkbox_label" htmlFor="nav_menu_small"><img src={isChecked ? '/images/close.svg' : '/images/hamburger.svg'} /></label>
+        {isChecked && (
+          <div className="overlay" onClick={() => setIsChecked(false)}></div>
+        )}
+
         <input
           type="checkbox"
           id="nav_menu_small"
@@ -68,9 +87,41 @@ const NavBar = () => {
         />
         <div className="menu_list">
           <ul>
-            <li onClick={() => handleNavigate('market')}>중고거래</li>
-            <li onClick={() => handleNavigate('mypage')}>마이페이지</li>
+            <li onClick={() => handleNavigate("market")}>중고거래</li>
+            <li onClick={() => handleNavigate("mypage")}>마이페이지</li>
           </ul>
+        </div>
+        <input
+          type="checkbox"
+          id="nav_search_small"
+          className="nav_search_small"
+          checked={isSearchChecked}
+          onChange={handleSearCheckBoxChange}
+        />
+        <div className="nav_search_container">
+          <input
+            className="nav_search_input"
+            type="text"
+            placeholder="상품을 검색해주세요"
+            value={searchValue}
+            onKeyDown={handleSearch}
+            onChange={(e) => setSearchValue(e.target.value)}
+          />
+        </div>
+        <div className="icon_container">
+          <label className="nav_search_label" htmlFor="nav_search_small">
+            {!isSearchChecked ? (
+              <img src="/images/search.svg" alt="검색" />
+            ) : (
+              <p className="nav_search_small_close">취소</p>
+            )}
+          </label>
+          <label className="nav_checkbox_label" htmlFor="nav_menu_small">
+            <img
+              src={isChecked ? "/images/close.svg" : "/images/hamburger.svg"}
+              alt="메뉴"
+            />
+          </label>
         </div>
         <div className="login_button2">
           {!user ? (
@@ -78,7 +129,6 @@ const NavBar = () => {
               로그인
             </button>
           ) : null}
-
         </div>
       </div>
     </div>

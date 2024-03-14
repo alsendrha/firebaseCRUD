@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   font-family: sans-serif;
   width: 90%;
   height: calc(100vh - 80px);
@@ -22,9 +23,9 @@
   display: flex;
   flex-direction: column-reverse;
   width: 100%;
-  height: 80%;
+  height: 100%;
   overflow-y: auto;
-  padding: 10px;
+  /* padding: 10px; */
   margin-bottom: 10px;
 }
 
@@ -40,8 +41,7 @@
 }
 
 .messages::-webkit-scrollbar {
-  width: 10px;
-  /* 스크롤바의 너비 */
+  display: none;
 }
 
 /* 스크롤바 색상 */
@@ -129,15 +129,16 @@
   display: flex;
   width: 100%;
   padding: 10px;
+  background-color: red;
 }
 
 .new-message-input {
   flex: 1;
   border: none;
   outline: none;
-  background: transparent;
   font-size: 16px;
   color: #333;
+  background-color: yellow;
   padding: 10px;
   border-radius: 5px 0 0 5px;
 }

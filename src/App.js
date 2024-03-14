@@ -17,13 +17,15 @@ import Chat from "./pages/list/detail/chat/Chat";
 import ChatListPage from "./pages/list/detail/chat/ChatListPage";
 import LoginPage from "./pages/login/LoginPage";
 import MyPage from "./pages/mypage/MyPage";
+import SearchPage from "./pages/search/SearchPage";
 import SignUp from "./pages/signup/SignUp";
 
 const queryClient = new QueryClient();
 
 const Layout = () => {
   const location = useLocation();
-  const isChatPage = location.pathname === "/chat";
+  const isChatPage =
+    location.pathname === "/chat" || location.pathname === "/chatlist";
 
   return (
     <div className="layout-container">
@@ -44,6 +46,7 @@ function App() {
           <Routes>
             <Route element={<Layout />}>
               <Route path="/" element={<ListPage />} />
+              <Route path="/search" element={<SearchPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/mypage" element={<MyPage />} />

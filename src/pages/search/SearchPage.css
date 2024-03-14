@@ -1,0 +1,8 @@
+.no_search{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 200px);
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.5);
+}
