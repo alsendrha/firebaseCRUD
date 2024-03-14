@@ -7,7 +7,7 @@
 }
 
 h1 span {
-  color: #95c70c;
+  color: #81cc85;
 }
 
 .login_input_container {
@@ -21,13 +21,13 @@ h1 span {
   border-radius: 8px;
   margin-top: 10px;
   border: 0.5px solid rgba(0, 0, 0, 0.5);
-  outline-color: #95c70c;
+  outline-color: #81cc85;
 }
 
 .login_page_button {
   width: 200px;
   height: 40px;
-  background-color: #95c70c;
+  background-color: #81cc85;
   border: none;
   border-radius: 8px;
   margin-top: 10px;
@@ -51,7 +51,7 @@ h1 span {
 }
 
 .login_page_signup p span {
-  color: #95c70c;
+  color: #81cc85;
   cursor: pointer;
 }
 

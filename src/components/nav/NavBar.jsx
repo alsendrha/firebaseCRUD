@@ -1,13 +1,11 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { pageContext } from "../../pages/list/InsertContext";
 import { userContext } from "../../pages/login/UserContext";
 import "./NavBar.css";
 const NavBar = () => {
   const { user } = useContext(userContext);
-  const { pageData, setPageData } = useContext(pageContext);
   const navigate = useNavigate();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [isSearchChecked, setIsSearchChecked] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -28,12 +26,11 @@ const NavBar = () => {
     setIsSearchChecked(event.target.checked);
   };
 
-  const dropDown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
+  // const dropDown = () => {
+  //   setIsDropdownOpen(!isDropdownOpen);
+  // };
 
   const goHome = () => {
-    setPageData(null);
     navigate("/");
   };
 
@@ -61,15 +58,18 @@ const NavBar = () => {
   return (
     <div>
       <div className="nav_container nav_position">
-        <div
-          className="logo_main_container"
-          style={{ cursor: "pointer" }}
-          onClick={goHome}
-        >
+        <input
+          type="checkbox"
+          id="nav_search_small"
+          className="nav_search_small"
+          checked={isSearchChecked}
+          onChange={handleSearCheckBoxChange}
+        />
+        <div className="logo_main_container" onClick={goHome}>
           <div className="logo_container">
-            <img src="/images/logo.png" alt="로고" className="logo" />
+            <img src="/images/logo1.png" alt="로고" className="logo" />
           </div>
-          <div>
+          <div className="logo_title_container">
             <p className="logo_title">배추마켓</p>
           </div>
         </div>
@@ -91,13 +91,6 @@ const NavBar = () => {
             <li onClick={() => handleNavigate("mypage")}>마이페이지</li>
           </ul>
         </div>
-        <input
-          type="checkbox"
-          id="nav_search_small"
-          className="nav_search_small"
-          checked={isSearchChecked}
-          onChange={handleSearCheckBoxChange}
-        />
         <div className="nav_search_container">
           <input
             className="nav_search_input"

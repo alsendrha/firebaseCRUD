@@ -60,7 +60,7 @@
 
 .user_massage_container{
   display: flex;
-  align-items: start;
+  align-items: flex-start;
 }
 
 .massage_user_info{

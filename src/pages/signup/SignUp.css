@@ -19,7 +19,7 @@
   flex-direction: column;
   width: 100px;
   height: 100px;
-  border: 1px solid #95c70c;
+  border: 1px solid #81cc85;
   background-color: white;
   border-radius: 50%;
   cursor: pointer;
@@ -76,7 +76,7 @@
   margin-left: 10px;
   width: 70px;
   height: 31px;
-  border: 0.5px solid #95c70c;
+  border: 0.5px solid #81cc85;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.4);
@@ -93,7 +93,7 @@
   height: 30px;
   margin: 0 5px 0 5px;
   border-radius: 8px;
-  background-color: #95c70c;
+  background-color: #81cc85;
   color: white;
   border: none;
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.4);

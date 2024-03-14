@@ -51,7 +51,7 @@
   height: 45px;
   border-radius: 8px;
   border: 0.5px solid rgba(0, 0, 0, 0.5);
-  outline-color: #95c70c;
+  outline-color: #81cc85;
 }
 
 .trade{
@@ -82,7 +82,7 @@ input[type=number] {
   border-radius: 8px;
   resize: none;
   border: 0.5px solid rgba(0, 0, 0, 0.5);
-  outline-color: #95c70c;
+  outline-color: #81cc85;
 }
 
 #trade_location{
@@ -110,7 +110,7 @@ input[type=number] {
   height: 50px;
   margin: 20px 0 10px 0;
   border-radius: 8px;
-  background-color:#95c70c;
+  background-color:#81cc85;
   border: none;
   color: white;
   font-size: 20px;

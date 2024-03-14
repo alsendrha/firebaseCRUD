@@ -136,3 +136,36 @@
 .detail_button:active {
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
 }
+
+@media screen and (max-width: 750px) {
+
+  .detail_container{
+    box-sizing: border-box;
+    padding: 0 10px 0 10px;
+  }
+
+  .detail_main_image {
+    width: 100%;
+  }
+  
+  .detail_user_container {
+    width: 100%;
+  }
+
+  .detail_content_container {
+    width: 100%;
+  }
+
+    .google_map_container {
+      width: 100%;
+      margin: 30px auto;
+    }
+  
+    .button_container_main {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin: 30px auto;
+    }
+}
