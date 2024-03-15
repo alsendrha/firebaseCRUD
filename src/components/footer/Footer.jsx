@@ -52,10 +52,18 @@ const Footer = () => {
           <br />
           <br />
           <div className="footer_last_one">
-            <p>제휴 문의</p>
-            <p>광고 문의</p>
-            <p>PR 문의</p>
-            <p>IR 문의</p>
+            <div>
+              <p>제휴 문의</p>
+            </div>
+            <div>
+              <p>광고 문의</p>
+            </div>
+            <div>
+              <p>PR 문의</p>
+            </div>
+            <div>
+              <p>IR 문의</p>
+            </div>
           </div>
           <br />
           <div className="footer_last_two">

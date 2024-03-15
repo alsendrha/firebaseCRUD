@@ -50,7 +50,12 @@
   height: 270px;
   margin: 35px;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 8px 8px 0 0;
+  transition: all 0.3s;
+}
+.list_item:hover{
+  transform: scale(1.03);
+  box-shadow: 0 -5px 5px 0px rgba(0, 0, 0, 0.20);
 }
 
 .list_image_container{
@@ -104,17 +109,17 @@
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  box-shadow: 0 0 10px 0px gray;
+  box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.5);
   background-color: #81cc85;
   cursor: pointer;
   border: none;
   color: white;
+  transition:all 0.4s;
 }
 
 .list_insert_button:hover {
   transform: scale(1.1);
-  transition: 0.5s;
-  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.20);
+  
 }
 
 @media screen and (max-width: 1400px){
