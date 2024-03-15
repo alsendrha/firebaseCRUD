@@ -82,6 +82,10 @@
   line-height: 24px;
 }
 
+.nav_menu_list_login{
+  display: none;
+}
+
 .nav_search_small_close{
   display: none;
 }
@@ -156,6 +160,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .nav_menu_list_login{
+    display: block;
   }
 
   .nav_search_container{

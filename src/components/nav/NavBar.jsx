@@ -44,6 +44,10 @@ const NavBar = () => {
         user ? navigate("/my_page") : navigate("/login");
         setIsChecked(false);
         break;
+      case "login":
+        navigate("/login");
+        setIsChecked(false);
+        break;
       default:
         break;
     }
@@ -89,6 +93,14 @@ const NavBar = () => {
           <ul>
             <li onClick={() => handleNavigate("market")}>중고거래</li>
             <li onClick={() => handleNavigate("my_page")}>마이페이지</li>
+            {!user ? (
+              <li
+                className="nav_menu_list_login"
+                onClick={() => handleNavigate("login")}
+              >
+                로그인
+              </li>
+            ) : null}
           </ul>
         </div>
         <div className="nav_search_container">

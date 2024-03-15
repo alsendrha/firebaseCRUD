@@ -5,9 +5,12 @@ import "./LoginPage.css";
 import { userContext } from "./UserContext";
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { setUserData } = useContext(userContext);
+  const { setUserData, user } = useContext(userContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  if (user) return navigate("/");
+
   const login = async () => {
     try {
       if (!email || !password) {
