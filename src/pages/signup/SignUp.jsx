@@ -5,6 +5,7 @@ import {
   doc,
   getDoc,
   getDocs,
+  query,
   setDoc,
   updateDoc,
   where,
@@ -30,8 +31,6 @@ const SignUp = () => {
   const params = useParams();
   const getUserData = useLocation();
   let imageUrl = null;
-
-  console.log("이건 파람스", params.userId);
 
   const getUser = async () => {
     if (!getUserData.state) return;
@@ -194,7 +193,6 @@ const SignUp = () => {
           );
         }
       }
-      console.log("여긴 업데이트고 이건 유저 닉네임", userNickName);
       const updateData = {
         // password: userPassword,
       };
@@ -208,7 +206,23 @@ const SignUp = () => {
       if (oldNickName !== userNickName) {
         updateData.nickName = userNickName;
       }
+
+      const response = query(
+        collection(db, "items"),
+        where("user", "==", getUserData.state.user.id)
+      );
+
+      if (oldNickName !== userNickName) {
+        const postUserNick = await getDocs(response);
+        postUserNick.forEach(async (doc) => {
+          await updateDoc(doc.ref, {
+            userNickName: userNickName,
+          });
+        });
+      }
+
       await updateDoc(doc(db, "users", getUserData.state.user.id), updateData);
+
       window.location.reload();
     } catch (error) {
       console.log("error", error);
