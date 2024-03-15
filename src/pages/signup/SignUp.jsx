@@ -334,7 +334,12 @@ const SignUp = () => {
               </button>
             </div>
           ) : (
-            <button onClick={() => setOnChanged(true)}>수정하기</button>
+            <button
+              className="signup_button"
+              onClick={() => setOnChanged(true)}
+            >
+              수정하기
+            </button>
           )}
         </div>
       </div>
