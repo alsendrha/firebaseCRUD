@@ -27,7 +27,8 @@ export function UserProvider(props) {
     if (userData === null) return;
     const fetchData = async () => {
       const getData = await getDoc(doc(db, "users", loginUser));
-      setUser(getData.data());
+      const userData = getData.data();
+      setUser(userData);
     };
     fetchData();
   }, [loginUser, userData]);

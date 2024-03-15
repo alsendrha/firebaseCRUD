@@ -17,7 +17,7 @@ import Chat from "./pages/list/detail/chat/Chat";
 import ChatListPage from "./pages/list/detail/chat/ChatListPage";
 import LoginPage from "./pages/login/LoginPage";
 import MyPage from "./pages/mypage/MyPage";
-import UserInfo from "./pages/mypage/userinfo/UserInfo";
+import HomePageInfo from "./pages/mypage/homeinfo/HomePageInfo";
 import SearchPage from "./pages/search/SearchPage";
 import SignUp from "./pages/signup/SignUp";
 
@@ -49,9 +49,9 @@ function App() {
               <Route path="/" element={<ListPage />} />
               <Route path="/search" element={<SearchPage />} />
               <Route path="/login" element={<LoginPage />} />
-              <Route path="/signup" element={<SignUp />} />
+              <Route path="/signup/:userId" element={<SignUp />} />
               <Route path="/my_page" element={<MyPage />} />
-              <Route path="/userinfo" element={<UserInfo />} />
+              <Route path="/home_info" element={<HomePageInfo />} />
               <Route path="/insert/:itemId" element={<ListInsertPage />} />
               <Route path="/detail" element={<DetailPage />} />
               <Route path="/chat_list" element={<ChatListPage />} />

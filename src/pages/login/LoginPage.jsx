@@ -71,7 +71,7 @@ const LoginPage = () => {
         <div className="login_page_signup">
           <p>
             아직 회원이 아니시라면{" "}
-            <span onClick={() => navigate("/signup")}>회원가입하기</span>
+            <span onClick={() => navigate("/signup/1")}>회원가입하기</span>
           </p>
         </div>
       </div>

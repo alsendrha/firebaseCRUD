@@ -62,9 +62,7 @@ const ListInsertPage = () => {
       maxWidthOrHeight: 1920,
       useWebWorker: true,
     };
-    if (!file) {
-      return;
-    }
+    if (!file) return;
 
     const compressedFile = await imageCompression(file, options);
 

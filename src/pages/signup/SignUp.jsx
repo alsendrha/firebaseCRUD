@@ -1,9 +1,18 @@
+import imageCompression from "browser-image-compression";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import { collection, doc, getDocs, setDoc, where } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  setDoc,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaCamera } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { db, storage } from "../../firebase";
 import "./SignUp.css";
 const SignUp = () => {
@@ -16,25 +25,55 @@ const SignUp = () => {
   const [userNickName, setUserNickName] = useState("");
   const [buttonClicked, setButtonClicked] = useState(false);
   const [nickCheck, setNickCheck] = useState(false);
+  const [onChanged, setOnChanged] = useState(false);
+  const [oldNickName, setOldNickName] = useState("");
+  const params = useParams();
+  const getUserData = useLocation();
   let imageUrl = null;
+
+  console.log("이건 파람스", params.userId);
+
+  const getUser = async () => {
+    if (!getUserData.state) return;
+    const userData = await getDoc(doc(db, "users", getUserData.state.user.id));
+    console.log("이건 유저데이터", userData.data());
+    setUserEmail(userData.data().email);
+    setUserNickName(userData.data().nickName);
+    setOldNickName(userData.data().nickName);
+    setFile(userData.data().userProfile);
+  };
+
+  useEffect(() => {
+    if (params.userId === "2") {
+      getUser();
+    }
+  }, []);
+
+  if (params.userId === "2" && !getUserData.state) return;
   const handleClick = () => {
+    if (!onChanged) return;
     imageFile.current.click();
   };
 
-  const fileUpload = (e) => {
+  const fileUpload = async (e) => {
     console.log("파일 업로드 시작");
     const file = e.target.files[0];
-    if (!file) {
-      console.log("파일이 없습니다.");
-      return;
-    }
+
+    const options = {
+      maxSizeMB: 0.2,
+      maxWidthOrHeight: 1920,
+      useWebWorker: true,
+    };
+
+    if (!file) return;
+    const compressedFile = await imageCompression(file, options);
     // Blob 객체인지 확인
-    if (!(file instanceof Blob)) {
+    if (!(compressedFile instanceof Blob)) {
       console.error("파일이 유효하지 않습니다.");
       return;
     }
     const reader = new FileReader();
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(compressedFile);
     return new Promise((resolve) => {
       reader.onload = () => {
         setFile(reader.result);
@@ -45,6 +84,7 @@ const SignUp = () => {
   };
 
   const onClearImageFile = () => {
+    if (!onChanged) return;
     imageFile.current.value = "";
     setFile(null);
   };
@@ -114,7 +154,6 @@ const SignUp = () => {
       await setDoc(doc(collection(db, "users"), newUser.user.uid), {
         id: newUser.user.uid,
         email: userEmail,
-        password: userPassword,
         nickName: userNickName,
         userProfile: imageUrl,
         date: new Date(),
@@ -130,12 +169,59 @@ const SignUp = () => {
     }
   };
 
+  const userUpdate = async () => {
+    console.log(nickCheck);
+    if (!userNickName) {
+      alert("닉네임을 입력해주세요.");
+      return;
+    } else if (userNickName.length < 2) {
+      alert("닉네임은 2자리 이상이어야 합니다.");
+      return;
+    } else if (oldNickName !== userNickName && !nickCheck) {
+      alert("닉네임 중복확인을 해주세요.");
+      return;
+    }
+    try {
+      const validDataUrlRegex =
+        /^data:([a-zA-Z0-9]+\/[a-zA-Z0-9-.+]+)?(?:;base64)?,(.*)$/;
+      let newUserUrl = null;
+      if (validDataUrlRegex.test(file)) {
+        if (file) {
+          const storageRef = ref(storage, `users/${getUserData.state.user.id}`);
+          await uploadString(storageRef, file, "data_url");
+          newUserUrl = await getDownloadURL(
+            ref(storage, `users/${getUserData.state.user.id}`)
+          );
+        }
+      }
+      console.log("여긴 업데이트고 이건 유저 닉네임", userNickName);
+      const updateData = {
+        // password: userPassword,
+      };
+      if (
+        newUserUrl !== null &&
+        newUserUrl !== "" &&
+        newUserUrl !== undefined
+      ) {
+        updateData.userProfile = newUserUrl;
+      }
+      if (oldNickName !== userNickName) {
+        updateData.nickName = userNickName;
+      }
+      await updateDoc(doc(db, "users", getUserData.state.user.id), updateData);
+      window.location.reload();
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
   return (
     <div>
       <div className="signup_container">
         <div>
           <h1>
-            <span>배추마켓 </span>회원가입
+            <span>배추마켓 </span>
+            {params.userId === "1" ? "회원가입" : "회원정보"}
           </h1>
           <div className="sign_images_container">
             {file ? (
@@ -168,39 +254,44 @@ const SignUp = () => {
               type="email"
               id="email"
               value={userEmail}
+              disabled={params.userId === "2" ? true : false}
               placeholder="이메일@example.com"
               onChange={(e) => setUserEmail(e.target.value)}
             />
-            <label htmlFor="password">
-              비밀번호&nbsp;
-              {buttonClicked && !userPassword ? (
-                <span>*비밀번호 미입력</span>
-              ) : null}
-            </label>
-            <input
-              className="login_input input_block"
-              type="password"
-              id="password"
-              value={userPassword}
-              placeholder="비밀번호"
-              onChange={(e) => setUserPassword(e.target.value)}
-            />
-            <label htmlFor="password1">
-              비밀번호 확인&nbsp;
-              {buttonClicked && !userPasswordCheck ? (
-                <span>*비밀번호 미입력</span>
-              ) : userPassword !== userPasswordCheck ? (
-                <span>*비밀번호 불일치</span>
-              ) : null}
-            </label>
-            <input
-              className="login_input input_block"
-              type="password"
-              id="password1"
-              value={userPasswordCheck}
-              placeholder="비밀번호 확인"
-              onChange={(e) => setUserPasswordCheck(e.target.value)}
-            />
+            {params.userId === "1" && (
+              <div>
+                <label htmlFor="password">
+                  비밀번호&nbsp;
+                  {buttonClicked && !userPassword ? (
+                    <span>*비밀번호 미입력</span>
+                  ) : null}
+                </label>
+                <input
+                  className="login_input input_block"
+                  type="password"
+                  id="password"
+                  value={userPassword}
+                  placeholder="비밀번호"
+                  onChange={(e) => setUserPassword(e.target.value)}
+                />
+                <label htmlFor="password1">
+                  비밀번호 확인&nbsp;
+                  {buttonClicked && !userPasswordCheck ? (
+                    <span>*비밀번호 미입력</span>
+                  ) : userPassword !== userPasswordCheck ? (
+                    <span>*비밀번호 불일치</span>
+                  ) : null}
+                </label>
+                <input
+                  className="login_input input_block"
+                  type="password"
+                  id="password1"
+                  value={userPasswordCheck}
+                  placeholder="비밀번호 확인"
+                  onChange={(e) => setUserPasswordCheck(e.target.value)}
+                />
+              </div>
+            )}
             <label htmlFor="nickName">
               닉네임&nbsp;
               {buttonClicked && !userNickName ? (
@@ -213,21 +304,38 @@ const SignUp = () => {
                 type="text"
                 id="nickName"
                 value={userNickName}
+                disabled={params.userId === "1" || onChanged ? false : true}
                 placeholder="닉네임"
                 onChange={(e) => setUserNickName(e.target.value)}
               />
-              <button className="double_check" onClick={handleDoubleCheck}>
-                중복 확인
-              </button>
+              {params.userId === "1" || onChanged ? (
+                <button className="double_check" onClick={handleDoubleCheck}>
+                  중복 확인
+                </button>
+              ) : null}
             </div>
             <br />
           </div>
-          <button className="signup_button" onClick={signUp}>
-            회원가입
-          </button>
-          <button className="signup_button" onClick={() => navigate("/login")}>
-            돌아가기
-          </button>
+          {params.userId === "1" || onChanged ? (
+            <div>
+              <button
+                className="signup_button"
+                onClick={params.userId === "1" ? signUp : userUpdate}
+              >
+                {params.userId === "1" ? "회원가입" : "수정하기"}
+              </button>
+              <button
+                className="signup_button"
+                onClick={() =>
+                  navigate(params.userId === "1" ? "/login" : "/my_page")
+                }
+              >
+                돌아가기
+              </button>
+            </div>
+          ) : (
+            <button onClick={() => setOnChanged(true)}>수정하기</button>
+          )}
         </div>
       </div>
     </div>
