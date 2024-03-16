@@ -16,6 +16,7 @@ export function UserProvider(props) {
     auth.onAuthStateChanged(async (user) => {
       if (user) {
         setLoginUser(user.uid);
+        console.log("이게 동작 안하나?")
       } else {
         console.log("로그인하지 않은 사용자");
       }
@@ -29,7 +30,7 @@ export function UserProvider(props) {
       const getData = await getDoc(doc(db, "users", loginUser));
       const userData = getData.data();
       setUser(userData);
-    };
+    }
     fetchData();
   }, [loginUser, userData]);
 

@@ -17,13 +17,13 @@ const MyPage = () => {
     );
 
     console.log(response.docs.map((doc) => doc.data()));
-    setUserPostCount(response.docs.map((doc) => doc.data()).length);
+    setUserPostCount(response.docs.map((doc) => doc.data()));
     console.log("이건 그냥 유저", userData.user.uid);
   };
 
   useEffect(() => {
     getPostData();
-  }, []);
+  }, [userData, user]);
 
   if (!user) return;
 
@@ -44,6 +44,7 @@ const MyPage = () => {
       return;
     }
   };
+
 
   return (
     <div>
@@ -71,7 +72,11 @@ const MyPage = () => {
             style={{ borderRadius: "0 0 0 8px" }}
           >
             <p className="my_page_user_post_title">나의 게시물 수</p>
-            <p className="my_page_title">{userPostCount}</p>
+            <p className="my_page_title1" onClick={() => navigate('my_item', {
+              state: {
+                userPostCount
+              }
+            })}>{userPostCount.valueOf().length}</p>
           </div>
           <div className="my_page_user_post_item2">
             <p className="my_page_user_post_title">준비중</p>
@@ -97,7 +102,7 @@ const MyPage = () => {
           >
             <p>나의 정보</p>
           </div>
-          <div className="my_menu_item" onClick={() => navigate("/home_info")}>
+          <div className="my_menu_item" onClick={() => navigate("home_info")}>
             <p>홈페이지 정보</p>
           </div>
           <div className="my_menu_item" onClick={handleLogOut}>
