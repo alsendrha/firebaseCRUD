@@ -8,8 +8,10 @@ const SearchPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [items, setItems] = useState([]);
   const navigate = useNavigate();
-  const searchValue = useLocation().state.searchValue.trim();
+  const searchValue = useLocation().state;
+
   async function getItemsData() {
+    if (searchValue?.searchValue.trim() === "" || searchValue?.searchValue.trim() === null) return;
     const q = query(collection(db, "items"), orderBy("date", "desc"));
     const getData = await getDocs(q);
     if (getData.docs.length === 0) {
@@ -20,22 +22,30 @@ const SearchPage = () => {
     }
   }
 
+  console.log(searchValue?.searchValue.trim());
+
   useEffect(() => {
     getItemsData();
-  }, [searchValue]);
+  }, [searchValue?.searchValue.trim()]);
   if (isLoading) {
     return (
       <div className="no_search">
         <div>로딩중...</div>
       </div>
     );
+  } else if (searchValue?.searchValue.trim() === "" || searchValue?.searchValue.trim() === null) {
+    return (
+      <div className="no_search">
+        <div>검색어를 입력해주세요.</div>
+      </div>
+    );
   }
   return (
     <div className="list_item_container">
-      {items.filter((item) => item.title.includes(searchValue)).length > 0 &&
-      searchValue !== "" ? (
+      {items.filter((item) => item.title.includes(searchValue?.searchValue.trim())).length > 0 &&
+        searchValue.searchValue.trim() !== "" ? (
         items
-          .filter((item) => item.title.includes(searchValue))
+          .filter((item) => item.title.includes(searchValue?.searchValue.trim()))
           .map((item) => (
             <div
               className="list_item"
