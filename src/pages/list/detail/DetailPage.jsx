@@ -160,7 +160,7 @@ const DetailPage = () => {
             <Marker
               icon={{
                 url: "/images/logo1.png",
-                scaledSize: new window.google.maps.Size(50, 65),
+                scaledSize: new window.google.maps.Size(40, 55),
               }}
               position={center}
             />

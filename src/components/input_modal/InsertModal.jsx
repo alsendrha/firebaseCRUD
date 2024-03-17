@@ -23,8 +23,8 @@ const InsertModal = ({ setIsModal, setPosition, setGetAddress }) => {
         setGetAddress(
           result[0].road_address !== null
             ? result[0].road_address.address_name +
-                "" +
-                result[0].road_address.building_name
+            "" +
+            result[0].road_address.building_name
             : result[0].address.address_name
         );
       } else {
@@ -82,8 +82,8 @@ const InsertModal = ({ setIsModal, setPosition, setGetAddress }) => {
                   {markerPosition && (
                     <Marker
                       icon={{
-                        url: "/images/marker.png",
-                        scaledSize: new window.google.maps.Size(50, 65),
+                        url: "/images/logo1.png",
+                        scaledSize: new window.google.maps.Size(40, 55),
                       }}
                       position={{
                         lat: markerPosition.lat,
