@@ -1,4 +1,3 @@
-import { QueryClient, QueryClientProvider } from "react-query";
 import {
   BrowserRouter,
   Outlet,
@@ -18,9 +17,9 @@ import ChatListPage from "./pages/list/detail/chat/ChatListPage";
 import LoginPage from "./pages/login/LoginPage";
 import MyPage from "./pages/mypage/MyPage";
 import HomePageInfo from "./pages/mypage/homeinfo/HomePageInfo";
+import MyItem from "./pages/mypage/myitem/MyItem";
 import SearchPage from "./pages/search/SearchPage";
 import SignUp from "./pages/signup/SignUp";
-import MyItem from "./pages/mypage/myitem/MyItem";
 
 const Layout = () => {
   const location = useLocation();
