@@ -151,7 +151,7 @@ const DetailPage = () => {
           <GoogleMap
             center={center}
             zoom={17}
-            mapContainerStyle={{ width: "100%", height: "700px" }}
+            mapContainerStyle={{ width: "100%", height: "100%" }}
             options={{
               zoomControl: false,
               scrollwheel: true,
