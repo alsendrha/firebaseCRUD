@@ -23,8 +23,8 @@ const InsertModal = ({ setIsModal, setPosition, setGetAddress }) => {
         setGetAddress(
           result[0].road_address !== null
             ? result[0].road_address.address_name +
-            "" +
-            result[0].road_address.building_name
+                "" +
+                result[0].road_address.building_name
             : result[0].address.address_name
         );
       } else {
@@ -71,7 +71,7 @@ const InsertModal = ({ setIsModal, setPosition, setGetAddress }) => {
                   zoom={13}
                   mapContainerStyle={{
                     width: "100%",
-                    height: "100%",
+                    height: "700px",
                   }}
                   options={{
                     zoomControl: false,
