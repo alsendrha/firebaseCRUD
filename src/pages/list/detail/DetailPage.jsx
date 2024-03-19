@@ -166,7 +166,7 @@ const DetailPage = () => {
           <p className="detail_item_content">{detailItem.content}</p>
           <div className="bottom_line"></div>
         </div>
-        <div className="google_map_container">
+        <div className="detail_google_map_container">
           <GoogleMap
             center={center}
             zoom={17}

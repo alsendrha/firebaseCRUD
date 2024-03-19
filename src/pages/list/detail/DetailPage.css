@@ -98,7 +98,7 @@
   font-size: 16px;
 }
 
-.google_map_container {
+.detail_google_map_container {
   width: 600px;
   height: 700px;
   margin: 30px auto;
@@ -157,7 +157,7 @@
     width: 100%;
   }
 
-  .google_map_container {
+  .detail_google_map_container {
     width: 100%;
     margin: 30px auto;
   }

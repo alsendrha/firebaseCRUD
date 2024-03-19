@@ -52,7 +52,7 @@
 
 .google_map_container {
   position: relative;
-  height: 700px;
+  height: 623px;
 }
 
 .google_map_select_button {
@@ -73,7 +73,7 @@
 
 .button_position {
   position: absolute;
-  bottom: 30px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
 }

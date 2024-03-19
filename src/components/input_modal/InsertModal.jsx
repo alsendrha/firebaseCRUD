@@ -71,7 +71,7 @@ const InsertModal = ({ setIsModal, setPosition, setGetAddress }) => {
                   zoom={13}
                   mapContainerStyle={{
                     width: "100%",
-                    height: "700px",
+                    height: "100%",
                   }}
                   options={{
                     zoomControl: false,
