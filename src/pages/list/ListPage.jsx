@@ -60,7 +60,7 @@ const ListPage = () => {
             <div
               className="list_item"
               key={item.id}
-              onClick={() => navigate("/detail", { state: item })}
+              onClick={() => navigate(`/detail/${item.id}`)}
             >
               <div className="list_image_container">
                 <img

@@ -51,7 +51,7 @@ function App() {
             <Route path="/my_page/my_item" element={<MyItem />} />
             <Route path="/my_page/home_info" element={<HomePageInfo />} />
             <Route path="/insert/:itemId" element={<ListInsertPage />} />
-            <Route path="/detail" element={<DetailPage />} />
+            <Route path="/detail/:itemId" element={<DetailPage />} />
             <Route path="/chat_list" element={<ChatListPage />} />
             <Route path="/chat" element={<Chat />} />
           </Route>

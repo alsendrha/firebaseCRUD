@@ -3,42 +3,52 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDoc,
   getDocs,
   setDoc,
   where,
 } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { db } from "../../../firebase";
 import { userContext } from "../../login/UserContext";
 import "./DetailPage.css";
 
 const DetailPage = () => {
   const navigate = useNavigate();
-  const detailData = useLocation();
-  const item = detailData.state;
   const { userData, user } = useContext(userContext);
   const [newMessage, setNewMessage] = useState([]);
+  const [detailItem, setDetailItem] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const getItemId = useParams();
 
   const getNewMessage = async () => {
-    if (!item) return;
+    if (!getItemId) return;
     const messages = await getDocs(
-      collection(db, `${item.id}`),
-      where("newNmessage", "==", true)
+      collection(db, `${getItemId.itemId}`),
+      where("newMessage", "==", true)
     );
     setNewMessage(messages.docs.map((doc) => doc.data().newMessage));
   };
 
+  const getItem = async () => {
+    if (!getItemId) return;
+    const itemData = await getDoc(doc(db, "items", getItemId.itemId));
+    setDetailItem(itemData.data());
+    setIsLoading(false);
+  };
+
   useEffect(() => {
     getNewMessage();
+    getItem();
   }, []);
 
-  if (!item) return;
+  if (!getItemId) return;
 
   const deleteItem = async () => {
     const result = window.confirm("정말 삭제하시겠습니까?");
     if (result) {
-      await deleteDoc(doc(db, "items", item.id));
+      await deleteDoc(doc(db, "items", detailItem.id));
       alert("삭제되었습니다.");
       navigate("/");
     } else {
@@ -47,8 +57,8 @@ const DetailPage = () => {
   };
   const chat = async () => {
     if (!user) return navigate("/login");
-    if (user.nickName !== item.userNickName) {
-      const chatUserListRef = doc(db, `${item.id}`, user.email);
+    if (user.nickName !== detailItem.userNickName) {
+      const chatUserListRef = doc(db, `${detailItem.id}`, user.email);
       await setDoc(chatUserListRef, {
         email: user.email,
         userNickName: user.nickName,
@@ -59,7 +69,7 @@ const DetailPage = () => {
       navigate("/chat", {
         state: {
           userNickName: user.nickName,
-          itemId: item.id,
+          itemId: detailItem.id,
           userProfile: user.userProfile,
           collection: user.email,
           userEmail: user.email,
@@ -69,7 +79,7 @@ const DetailPage = () => {
       navigate("/chat_list", {
         state: {
           userNickName: user.nickName,
-          itemId: item.id,
+          itemId: detailItem.id,
           userProfile: user.userProfile,
           collection: user.email,
           userEmail: user.email,
@@ -78,9 +88,11 @@ const DetailPage = () => {
     }
   };
 
-  const center = { lat: item.lat, lng: item.lng };
+  if (isLoading) return <div>로딩중...</div>;
+
+  const center = { lat: detailItem.lat, lng: detailItem.lng };
   const givenDate = new Date(
-    item.date.seconds * 1000 + item.date.nanoseconds / 1000000
+    detailItem.date.seconds * 1000 + detailItem.date.nanoseconds / 1000000
   );
   // 현재 시간
   const currentDate = new Date();
@@ -107,11 +119,11 @@ const DetailPage = () => {
   return (
     <div>
       <div className="detail_container">
-        {item.imageUrl && (
+        {detailItem.imageUrl && (
           <div className="detail_image_container">
             <img
               className="detail_main_image"
-              src={item.imageUrl}
+              src={detailItem.imageUrl}
               alt="이미지다!"
             />
           </div>
@@ -121,16 +133,19 @@ const DetailPage = () => {
             <div className="detail_user_info">
               <img
                 className="detail_user_profile_image"
-                src={item.userProfile}
+                src={detailItem.userProfile}
                 alt="userProfile"
               />
               <div className="detail_user_text">
-                <p className="detail_user_nick_name">{item.userNickName}</p>
-                <p className="detail_user_address">{item.address}</p>
+                <p className="detail_user_nick_name">
+                  {detailItem.userNickName}
+                </p>
+                <p className="detail_user_address">{detailItem.address}</p>
               </div>
             </div>
             <div className="detail_chat" onClick={chat}>
-              {item.user === userData?.user.uid && newMessage.includes(true) ? (
+              {detailItem.user === userData?.user.uid &&
+              newMessage.includes(true) ? (
                 <p className="detail_new_chat">*</p>
               ) : null}
               <img src="/images/chat.svg" alt="chat" />
@@ -139,12 +154,12 @@ const DetailPage = () => {
           <div className="bottom_line"></div>
         </div>
         <div className="detail_content_container">
-          <p className="detail_item_title">{item.title}</p>
-          <p className="detail_item_date">{`${item.trade} · ${timeAgo}`}</p>
+          <p className="detail_item_title">{detailItem.title}</p>
+          <p className="detail_item_date">{`${detailItem.trade} · ${timeAgo}`}</p>
           <p className="detail_item_price">
-            {Number(item.price).toLocaleString()}원
+            {Number(detailItem.price).toLocaleString()}원
           </p>
-          <p className="detail_item_content">{item.content}</p>
+          <p className="detail_item_content">{detailItem.content}</p>
           <div className="bottom_line"></div>
         </div>
         <div className="google_map_container">
@@ -170,14 +185,14 @@ const DetailPage = () => {
           <div className="detail_button" onClick={() => navigate("/")}>
             목록으로
           </div>
-          {user && item.user === user.id ? (
+          {user && detailItem.user === user.id ? (
             <div className="button_container">
               <div
                 className="detail_button"
                 onClick={() =>
                   navigate("/insert/2", {
                     state: {
-                      id: item.id,
+                      id: detailItem.id,
                     },
                   })
                 }
