@@ -11,12 +11,10 @@ const MyItem = () => {
         <div
           className="list_item"
           key={item.id}
-          onClick={() => navigate("/detail", { state: item })}
+          onClick={() => navigate(`/detail/${item.id}`)}
         >
           <div className="list_image_container">
-            <img src={item.imageUrl}
-              alt="이미지"
-            />
+            <img src={item.imageUrl} alt="이미지" />
           </div>
           <div className="list_text_container">
             <p className="list_item_title">{item.title}</p>

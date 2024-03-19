@@ -133,7 +133,11 @@ const DetailPage = () => {
             <div className="detail_user_info">
               <img
                 className="detail_user_profile_image"
-                src={detailItem.userProfile}
+                src={
+                  detailItem.userProfile
+                    ? detailItem.userProfile
+                    : "/images/no_profile.png"
+                }
                 alt="userProfile"
               />
               <div className="detail_user_text">

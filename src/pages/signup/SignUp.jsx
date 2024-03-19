@@ -50,7 +50,9 @@ const SignUp = () => {
 
   if (params.userId === "2" && !getUserData.state) return;
   const handleClick = () => {
-    if (!onChanged) return;
+    if (params.userId === "2") {
+      if (!onChanged) return;
+    }
     imageFile.current.click();
   };
 
