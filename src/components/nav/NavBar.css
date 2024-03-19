@@ -115,7 +115,6 @@
   list-style: none;
   padding-left: -10px;
   justify-content: flex-start;
-
 }
 
 .menu_list ul li {
@@ -192,7 +191,7 @@
   }
 
   .menu_list {
-    display: none;
+    visibility: hidden; 
     position: absolute;
     left: 0;
     top: 70px;
@@ -201,7 +200,11 @@
     border-top: 1px solid rgba(0, 0, 0, 0.20);
     z-index: 1000;
     height: 0px;
-    transition: all 0.5s;
+    transition: all 0.4s;
+  }
+
+  .menu_list ul li{
+    visibility: hidden;
   }
 
   .nav_search_label{
@@ -232,7 +235,7 @@
   }
 
   .nav_menu_small:checked~.menu_list {
-    display: flex;
+    visibility: visible;
     height: 100px;
   }
 
@@ -245,6 +248,7 @@
   }
 
   .nav_menu_small:checked~.menu_list ul li {
+    visibility: visible;
     display: flex;
     margin-left: 0;
     padding-left: 10px;
