@@ -149,7 +149,7 @@ const DetailPage = () => {
             </div>
             <div className="detail_chat" onClick={chat}>
               {detailItem.user === userData?.user.uid &&
-              newMessage.includes(true) ? (
+                newMessage.includes(true) ? (
                 <p className="detail_new_chat">*</p>
               ) : null}
               <img src="/images/chat.svg" alt="chat" />
@@ -187,7 +187,7 @@ const DetailPage = () => {
         </div>
         <div className="button_container_main">
           <div className="detail_button" onClick={() => navigate("/")}>
-            목록으로
+            목록
           </div>
           {user && detailItem.user === user.id ? (
             <div className="button_container">
