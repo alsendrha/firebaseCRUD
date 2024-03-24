@@ -74,7 +74,7 @@ const NavBar = () => {
             <img src="/images/logo1.png" alt="로고" className="logo" />
           </div>
           <div className="logo_title_container">
-            <p className="logo_title">배추마켓</p>
+            <p className="logo_title">배추1마켓</p>
           </div>
         </div>
 
