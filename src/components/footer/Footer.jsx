@@ -39,14 +39,6 @@ const Footer = () => {
               <div className="footer_icon">
                 <img src="/images/blog.svg" alt="블로그 아이콘" />
               </div>
-              {/* <div className="footer_icon_last">
-                <img
-                  style={{ fill: "red" }}
-                  src="/images/earth.svg"
-                  alt="지구 아이콘"
-                />
-                <span style={{ marginLeft: "5px" }}>한국</span>
-              </div> */}
             </div>
           </div>
           <br />

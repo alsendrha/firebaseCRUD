@@ -61,7 +61,7 @@ const SearchPage = () => {
             <div
               className="list_item"
               key={item.id}
-              onClick={() => navigate("/detail", { state: item })}
+              onClick={() => navigate(`/detail/${item.id}`, { state: item })}
             >
               <div className="list_image_container">
                 <img

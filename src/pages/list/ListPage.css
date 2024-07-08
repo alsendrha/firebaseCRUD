@@ -60,6 +60,11 @@
   box-shadow: 0 -5px 5px 0px rgba(0, 0, 0, 0.20);
 }
 
+.list_item:hover .list_image_container {
+  border-radius: 8px 8px 0 0;
+  border: none;
+}
+
 .list_image_container {
   display: flex;
   align-items: center;
@@ -79,6 +84,7 @@
 
 .list_text_container {
   margin-top: 10px;
+  padding-left: 1px;
   height: 80px;
   display: flex;
   flex-direction: column;
