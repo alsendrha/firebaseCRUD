@@ -169,7 +169,7 @@ const SignUp = () => {
       }
     }
   };
-  console.log("aaas", getUserData.state.user.id);
+
   const userUpdate = async () => {
     console.log(nickCheck);
     if (!userNickName) {
